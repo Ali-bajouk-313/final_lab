@@ -1,0 +1,119 @@
+<nav class="navbar">
+
+
+    <!-- Logo -->
+    <div class="logo">
+        <a routerLink="/">
+            <app-button 
+                text="AB"
+                buttonClass="AB-btn">
+            </app-button>
+            <span class="fashion-text">Fashion</span>
+        </a>
+    </div>
+
+
+    <!-- Links -->
+    <ul class="nav-links">
+
+
+        <li>
+            <a routerLink="/">
+                Home
+            </a>
+        </li>
+
+
+        <li class="shop-menu">
+
+    <a routerLink="/shop">
+        Shop
+    </a>
+
+
+    <div class="dropdown">
+
+        <!-- @for(category of categories; track category)
+        {
+            <a [routerLink]="['/shop']" [queryParams]="{category: category}">
+                {{category}}
+            </a>
+        } -->
+
+    </div>
+
+</li>
+
+
+        <li>
+            <a routerLink="/about">
+                About
+            </a>
+        </li>
+
+
+    </ul>
+
+
+
+    <!-- Search -->
+    <div class="search-box">
+
+        
+        <app-input
+        type="text"
+        inputplaceholder="search products ..."
+        ></app-input>
+
+
+        <lucide-icon 
+        [img]="Search">
+        </lucide-icon>
+
+    </div>
+
+
+
+<div class="actions">
+
+    <a routerLink="/wishlist">
+        <lucide-icon [img]="Heart"></lucide-icon>
+    </a>
+
+    <a routerLink="/cart">
+        <lucide-icon [img]="ShoppingCart"></lucide-icon>
+    </a>
+
+    @if(isLoggedIn) {
+
+        <a routerLink="/profile">
+            <lucide-icon [img]="User"></lucide-icon>
+        </a>
+
+
+         <app-button 
+         text="Logout"
+         buttonClass="login-btn"
+         (clicked)="logout()"
+         >
+        </app-button>
+
+    } @else {
+
+
+        <app-button
+        text="Login"
+        buttonClass="login-btn"
+        routerLink="/login"
+        ></app-button>
+
+        <app-button
+        text="Register"
+        buttonClass="login-btn"
+        routerLink="/register"
+        ></app-button>
+
+    }
+
+</div>
+</nav>

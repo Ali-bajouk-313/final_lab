@@ -1,0 +1,133 @@
+d     <div class="Welcome">
+            <h1>
+            Create Account
+            </h1>
+            <h2>
+                Join AB Fashion today
+            </h2>
+    </div>
+
+    <div class="auth-container">
+        <form class="auth-card" (ngSubmit)="register()">
+        <div class="form-group">
+            <label>
+            Full Name
+            </label>
+
+            <app-input
+                    type="text"
+                    inputplaceholder="Enter your name"
+                    (valueChange)="username = $event"
+            ></app-input>
+            
+        </div>
+
+        <div class="form-group">
+            <label>
+            Email
+            </label>
+        <app-input
+                type="email" 
+                inputplaceholder="Enter your email"
+                (valueChange)="email = $event">
+            ></app-input>
+
+        </div>
+
+        <div class="form-group">
+            <label>
+            Password
+            </label>
+
+            <app-input
+                type="password" 
+                inputplaceholder="Enter your password"
+                (valueChange)="password = $event"
+            ></app-input>
+        </div>
+
+        <div class="form-group">
+            <label>
+            Confirm Password
+            </label>
+            <app-input
+                type="password" 
+                inputplaceholder="Confirm password"
+                formControlName="password"
+            ></app-input>
+        </div>
+
+        <h3>
+        Shipping Address
+        </h3>
+
+        <div class="form-group">
+            <label>
+            Street
+            </label>
+
+            <app-input
+                type="text" 
+                inputplaceholder="Street address"
+                formControlName="street"
+            ></app-input>
+        </div>
+
+        <div class="address-row">
+
+            <div class="form-group">
+                <label>
+                City
+                </label>
+
+                <app-input
+                    type="text" 
+                    inputplaceholder="City"
+                    formControlName="City"
+                ></app-input>
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                Country
+                </label>
+
+                <app-input 
+                type="text"
+                inputplaceholder="Country"
+                formControlName="country"
+                ></app-input>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>
+            Phone Number
+            </label>
+
+            <app-input 
+            type="text"
+            inputplaceholder="Phone"
+            formControlName="phone"
+            ></app-input>
+
+        </div>
+
+        <app-button
+            buttonClass="auth-button"
+            type="button"
+            text="Create Account"
+            (clicked)="register()">
+        </app-button>
+
+        <div class="auth-link">
+            Already have an account?
+            <a routerLink="/login">
+            Login
+            </a>
+        </div>
+
+        </form>
+    </div>

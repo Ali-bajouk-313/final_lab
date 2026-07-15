@@ -1,0 +1,96 @@
+
+<div class="Welcome">
+    
+    <h1>Welcome Back</h1>
+
+    <h2>Sign in to your AB Fashion account</h2>
+</div>
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+
+        <form >
+
+            <div class="form-group">
+
+                <label>Email</label>
+
+                
+                    <app-input
+                            type="email"
+                            inputplaceholder="Enter your email"
+                            (valueChange)="email = $event"
+                    ></app-input>
+
+
+
+                <!-- @if(loginForm.get('email')?.invalid &&
+                    loginForm.get('email')?.touched){ 
+
+                    <small class="error">
+                        Please enter a valid email.
+                    </small>
+
+                 }  -->
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                    <app-input
+                            type="password"
+                            inputplaceholder="Enter your password"
+                            (valueChange)="password = $event">
+
+                    ></app-input>
+
+
+                @if(password.length > 0 && password.length<6 ) {
+
+                    <small class="error">
+                        Password must be at least 6 characters.
+                    </small>
+
+                }    
+
+            </div>
+
+          
+
+            <app-button 
+                 text="Login"
+                 buttonClass="auth-button"
+                 type="button"
+                 (clicked)="login()"
+                 >
+            </app-button>
+
+        </form>
+
+        <div class="divider">
+            OR
+        </div>
+
+        <app-button
+        buttonClass="google-button"
+        text="Continue with Google"
+        >
+        </app-button>
+
+        <div class="auth-link">
+
+            Don't have an account?
+
+            <a routerLink="/register">
+                Register
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
