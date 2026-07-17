@@ -31,11 +31,11 @@ export class Navbar {
     private router:Router
   ){}
 
-    get isLoggedIn(): boolean {
+  get isLoggedIn(): boolean {
     return this.auth.isAuthenticated();
-    }
-    logout(){
+  }
 
+  logout(){
     this.auth.logout();
     this.router.navigate(['/login']);
     

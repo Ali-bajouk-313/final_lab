@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { IUser } from '../../shared/interface/user.interface';
 import { catchError, Observable } from 'rxjs';
+import {signal} from'@angular/core';
 
 interface LoginResponse{
   token:string;
@@ -24,17 +25,27 @@ export class AuthService{
     private http: HttpClient,
     private cookieservice: CookieService,
     // private errorhandler:ErrorHandlerService
-  ){}
+  ){
+  if(this.gettoken()){
+
+    this.isLoggedIn.set(true);
+
+  }
+  }
 
   tokenkey='token';
-  currentuser:any ;
+  currentuser=signal<IUser | null>(null) ;
+  isLoggedIn = signal(false);
+
   private BaseUrl ='http://localhost:4000/api';
   gettoken(): string{
     return this.cookieservice.get(this.tokenkey);
   }
   settoken(token:string):void{
-    this.cookieservice.set(this.tokenkey,token,{path:'/',expires:7})
+    this.cookieservice.set(this.tokenkey,token,{path:'/',expires:7});
+    this.isLoggedIn.set(true);
   }
+  
 
   login(email:string,password:string):Observable<LoginResponse>{
    return this.http.post<LoginResponse>(
@@ -46,9 +57,16 @@ export class AuthService{
     );
     
   }
+  removeToken(){
+
+    this.cookieservice.delete(this.tokenkey);
+
+    this.isLoggedIn.set(false);
+
+  }
   isAuthenticated(): boolean {
 
-    return !!this.gettoken();
+    return this.isLoggedIn();
 
   }
   register(payload:{username:string,email:string,password:string,firstName:string;lastName:string;dateOfBirth:string;role:string;}){
@@ -58,12 +76,28 @@ export class AuthService{
     );
   }
   logout(){
-    this.cookieservice.delete(this.tokenkey)
+
+  this.cookieservice.delete(this.tokenkey);
+
+  this.currentuser.set(null);
+
+  this.isLoggedIn.set(false);
+
+  this.router.navigate(['/login']);
+
   }
   setuser(user:IUser){
-    this.currentuser=user;
+    this.currentuser.set(user);
   }
   getuser(){
     return this.currentuser;
   }
+  getCurrentUser(){
+
+  return this.http.get<IUser>(
+    `${this.BaseUrl}/auth/user`
+  );
+
+}
+
 }

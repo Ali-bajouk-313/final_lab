@@ -11,7 +11,7 @@
     <div class="auth-card">
 
 
-        <form >
+        <form [formGroup]="loginform" (ngSubmit)="login()">
 
             <div class="form-group">
 
@@ -21,19 +21,11 @@
                     <app-input
                             type="email"
                             inputplaceholder="Enter your email"
-                            (valueChange)="email = $event"
+                            formControlName="email"
                     ></app-input>
 
 
 
-                <!-- @if(loginForm.get('email')?.invalid &&
-                    loginForm.get('email')?.touched){ 
-
-                    <small class="error">
-                        Please enter a valid email.
-                    </small>
-
-                 }  -->
 
             </div>
 
@@ -41,10 +33,11 @@
 
                 <label>Password</label>
 
-                    <app-input
+                    <!-- <app-input
                             type="password"
                             inputplaceholder="Enter your password"
-                            (valueChange)="password = $event">
+                            formControlName="password"
+                            >
 
                     ></app-input>
 
@@ -55,7 +48,18 @@
                         Password must be at least 6 characters.
                     </small>
 
-                }    
+                }     -->
+                <app-input
+                    type="password"
+                    formControlName="password">
+                </app-input>
+
+                @if(loginform.controls['password'].touched &&
+                loginform.controls['password'].hasError('minlength')){
+                    <small class="error">
+                        Password must be at least 6 characters
+                    </small>
+                }
 
             </div>
 
@@ -64,8 +68,7 @@
             <app-button 
                  text="Login"
                  buttonClass="auth-button"
-                 type="button"
-                 (clicked)="login()"
+                 type="submit"
                  >
             </app-button>
 

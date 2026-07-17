@@ -1,25 +1,80 @@
-import { Component,input,output } from '@angular/core';
+import { Component, forwardRef, input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
 
 @Component({
   selector: 'app-input',
-  standalone: true,
-  imports: [],
-  templateUrl: './input.html',
-  styleUrl: './input.css',
+  standalone:true,
+  templateUrl:'./input.html',
+  styleUrl:'./input.css',
+
+  providers:[
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(()=>Input),
+      multi:true
+    }
+  ]
+
 })
-export class Input {
-  text=input('');
-  buttonClass=input('');
-  type=input<'text' | 'password' | 'email' >('text');
-  disabled=input(false);
+export class Input implements ControlValueAccessor {
+
+
+  type=input<'text' | 'password' | 'email'>('text');
+
   inputplaceholder=input('');
-  clicked =output<void>();
-  valueChange=output<string>();
-  handleInput(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    this.valueChange.emit(value);
+
+  buttonClass=input('');
+
+  disabled=input(false);
+
+
+
+  value='';
+
+
+  onChange:any = ()=>{};
+  onTouched:any = ()=>{};
+
+
+
+  writeValue(value:string):void{
+
+    this.value=value || '';
+
   }
-  onclick() {
-    this.clicked.emit();
+
+
+  registerOnChange(fn:any):void{
+
+    this.onChange=fn;
+
   }
+
+
+  registerOnTouched(fn:any):void{
+
+    this.onTouched=fn;
+
+  }
+
+
+  setDisabledState(isDisabled:boolean){
+
+  }
+
+
+
+  handleInput(event:Event){
+
+    const value=(event.target as HTMLInputElement).value;
+
+    this.value=value;
+
+    this.onChange(value);
+
+    this.onTouched();
+
+  }
+
 }

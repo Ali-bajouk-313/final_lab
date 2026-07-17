@@ -3,33 +3,111 @@ import { Button } from '../../shared/components/buttons/buttons'
 import { Input } from '../../shared/components/input/input'
 import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
+import { FormBuilder,FormGroup, Validator, ReactiveFormsModule, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-register',
   standalone:true,
-  imports: [Button,Input],
+  imports: [Button,Input,ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
 
 export class Register {
-  username='';
-  email='';
-  password='';
+
+  registerForm!: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private auth:AuthService,
     private router:Router
-  ){}  
+  ){}
+  ngOnInit(): void{
+  this.registerForm=this.fb.group({
+    username: [
+        '',
+        Validators.required
+      ],
+
+
+    email: [
+        '',
+        [
+          Validators.required,
+          Validators.email
+        ]
+      ],
+
+
+    password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6)
+        ]
+      ],
+
+
+    confirmPassword: [
+        '',
+        Validators.required
+      ],
+    street: [
+        '',
+        Validators.required
+      ],
+
+
+    city: [
+        '',
+        Validators.required
+      ],
+
+
+    country: [
+        '',
+        Validators.required
+      ],
+
+
+    phoneNumber: [
+        '',
+        Validators.required
+      ]
+
+  })
+} 
   
   register(){
+    
+    if (this.registerForm.invalid) {
+
+      this.registerForm.markAllAsTouched();
+
+      alert("Please fill all required fields.");
+
+      return;
+
+    }
+    const data = this.registerForm.value;
+
+
+
+    if(data.password !== data.confirmPassword){
+
+      alert("Passwords don't match.");
+
+      return;
+
+    }
     alert("Register clicked");
     
     const user={
 
-    username:this.username,
-    email:this.email,
-    password:this.password,
-    firstName:this.username || "user",
+    username:data.username!,
+    email:data.email!,
+    password:data.password!,
+    firstName:data.username!,
     lastName: "User",
     dateOfBirth: "2000-01-01",
     role: "user"

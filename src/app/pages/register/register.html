@@ -1,4 +1,4 @@
-d     <div class="Welcome">
+     <div class="Welcome">
             <h1>
             Create Account
             </h1>
@@ -8,7 +8,7 @@ d     <div class="Welcome">
     </div>
 
     <div class="auth-container">
-        <form class="auth-card" (ngSubmit)="register()">
+        <form class="auth-card" [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="form-group">
             <label>
             Full Name
@@ -16,10 +16,12 @@ d     <div class="Welcome">
 
             <app-input
                     type="text"
-                    inputplaceholder="Enter your name"
-                    (valueChange)="username = $event"
+                    inputplaceholder="Enter your username"
+                    formControlName="username"
             ></app-input>
-            
+           @if (registerForm.controls['username'].touched && registerForm.controls['username'].hasError('required')){
+            <small style="color:red">Username is required</small>
+           } 
         </div>
 
         <div class="form-group">
@@ -29,9 +31,11 @@ d     <div class="Welcome">
         <app-input
                 type="email" 
                 inputplaceholder="Enter your email"
-                (valueChange)="email = $event">
+                formControlName="email">
             ></app-input>
-
+            @if (registerForm.controls['email'].touched && registerForm.controls['email'].hasError('required')){
+            <small style="color:red">email is required</small>
+           }
         </div>
 
         <div class="form-group">
@@ -42,8 +46,16 @@ d     <div class="Welcome">
             <app-input
                 type="password" 
                 inputplaceholder="Enter your password"
-                (valueChange)="password = $event"
+                formControlName="password"
             ></app-input>
+            @if(
+                registerForm.controls['password'].touched &&
+                registerForm.controls['password'].hasError('minlength')
+                ){
+                    <small class="error">
+                        Password must be at least 6 characters.
+                    </small>
+                }
         </div>
 
         <div class="form-group">
@@ -53,8 +65,11 @@ d     <div class="Welcome">
             <app-input
                 type="password" 
                 inputplaceholder="Confirm password"
-                formControlName="password"
+                formControlName="confirmPassword"
             ></app-input>
+            @if (registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].hasError('required')){
+            <small style="color:red">Password is required</small>
+            }
         </div>
 
         <h3>
@@ -83,7 +98,7 @@ d     <div class="Welcome">
                 <app-input
                     type="text" 
                     inputplaceholder="City"
-                    formControlName="City"
+                    formControlName="city"
                 ></app-input>
             </div>
 
@@ -110,18 +125,17 @@ d     <div class="Welcome">
             <app-input 
             type="text"
             inputplaceholder="Phone"
-            formControlName="phone"
+            formControlName="phoneNumber"
             ></app-input>
 
         </div>
 
         <app-button
             buttonClass="auth-button"
-            type="button"
-            text="Create Account"
-            (clicked)="register()">
+            type="submit"
+            text="Create Account">
         </app-button>
-
+        
         <div class="auth-link">
             Already have an account?
             <a routerLink="/login">

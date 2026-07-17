@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
-
+import {IUser} from '../../shared/interface/user.interface'
+import {signal} from'@angular/core';
 
 @Component({
 selector:'app-profile',
@@ -14,7 +15,7 @@ styleUrl:'./profile.css'
 export class Profile{
 
 
-  user:any;
+  user=signal<IUser | null>(null) ;
 
 
   constructor(
@@ -23,7 +24,6 @@ export class Profile{
   ){
    this.user=this.auth.getuser();
    console.log("good");
-   console.log(this.user);
   }
 
   logout(){

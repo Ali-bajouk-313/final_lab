@@ -3,7 +3,8 @@ import { Login}  from './pages/login/login'
 import { Register}  from './pages/register/register'
 import { Home } from './pages/home/home'
 import { Profile } from './pages/profile/profile'
-
+import { Products } from './pages/product-list/product-list';
+import { ProdcutDetail } from './pages/prodcut-detail/prodcut-detail';
 export const routes: Routes = [
     {
         path:"",
@@ -34,5 +35,14 @@ export const routes: Routes = [
     {
         path:"profile",
         component:Profile
+    },
+    {
+        path:"shop",
+        component:Products
+    },
+    {
+        path:"shop/:id",
+        component:ProdcutDetail
     }
 ];
+//use AG grid
