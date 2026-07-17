@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../../core/products/products.service';
-import { Product } from '../../shared/interface/product.interface';
+import { ProductService } from '../../shared/products-services/products.service';
+import { IProduct } from '../../shared/interface/product.interface';
 import {Button} from '../../shared/components/buttons/buttons'
-import { Router, RouterLink } from '@angular/router';
+import { ProductCard } from './components/product-card/product-card';
+
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [RouterLink],
+  imports: [ProductCard],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })
 export class Products {
 
 
-  products: Product[] = [];
+  products: IProduct[] = [];
 
 
   constructor(
@@ -27,7 +28,7 @@ export class Products {
     this.productService.getProducts()
       .subscribe({
 
-        next: (data: Product[]) => {
+        next: (data: IProduct[]) => {
 
           this.products = data;
 
