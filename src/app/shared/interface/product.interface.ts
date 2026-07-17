@@ -1,9 +1,10 @@
-export interface Rating{
+
+export interface IRating{
     rate:number;
     count:number;
 }
 
-export interface Product{
+export interface IProduct{
 
     id:number;
 
@@ -17,6 +18,6 @@ export interface Product{
 
     image:string;
 
-    rating:Rating;
+    rating:IRating;
 
 }

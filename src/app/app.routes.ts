@@ -5,6 +5,8 @@ import { Home } from './pages/home/home'
 import { Profile } from './pages/profile/profile'
 import { Products } from './pages/product-list/product-list';
 import { ProdcutDetail } from './pages/prodcut-detail/prodcut-detail';
+import {About} from './pages/about/about'
+
 export const routes: Routes = [
     {
         path:"",
@@ -43,6 +45,10 @@ export const routes: Routes = [
     {
         path:"shop/:id",
         component:ProdcutDetail
+    },
+    {
+        path:"About",
+        component:About
     }
 ];
 //use AG grid

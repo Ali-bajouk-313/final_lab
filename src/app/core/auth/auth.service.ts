@@ -6,11 +6,11 @@ import { IUser } from '../../shared/interface/user.interface';
 import { catchError, Observable } from 'rxjs';
 import {signal} from'@angular/core';
 
-interface LoginResponse{
+interface ILoginResponse{
   token:string;
   user:IUser
 }
-interface RegisterResponse{
+interface IRegisterResponse{
    token:string;
     user:IUser 
 }
@@ -24,13 +24,12 @@ export class AuthService{
     private router: Router,
     private http: HttpClient,
     private cookieservice: CookieService,
-    // private errorhandler:ErrorHandlerService
   ){
-  if(this.gettoken()){
+    if(this.gettoken()){
 
-    this.isLoggedIn.set(true);
+      this.isLoggedIn.set(true);
 
-  }
+    }
   }
 
   tokenkey='token';
@@ -38,17 +37,21 @@ export class AuthService{
   isLoggedIn = signal(false);
 
   private BaseUrl ='http://localhost:4000/api';
+    
   gettoken(): string{
     return this.cookieservice.get(this.tokenkey);
   }
   settoken(token:string):void{
-    this.cookieservice.set(this.tokenkey,token,{path:'/',expires:7});
+    const expired=new Date();
+    expired.setHours(expired.getHours()+2);
+    
+    this.cookieservice.set(this.tokenkey,token,{path:'/',expires:expired});
     this.isLoggedIn.set(true);
   }
   
 
-  login(email:string,password:string):Observable<LoginResponse>{
-   return this.http.post<LoginResponse>(
+  login(email:string,password:string):Observable<ILoginResponse>{
+   return this.http.post<ILoginResponse>(
       `${this.BaseUrl}/auth/login`,
       {
         email,
@@ -70,7 +73,7 @@ export class AuthService{
 
   }
   register(payload:{username:string,email:string,password:string,firstName:string;lastName:string;dateOfBirth:string;role:string;}){
-    return this.http.post<RegisterResponse>(
+    return this.http.post<IRegisterResponse>(
       `${this.BaseUrl}/auth/register`,
       payload
     );

@@ -1,1 +1,234 @@
-<p>about works!</p>
+<div>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p class="label">
+            Our Story
+        </p>
+
+
+        <h1>
+            About AB Fashion
+        </h1>
+
+
+        <p>
+            Founded with a passion for style and quality,
+            AB Fashion brings together the best in contemporary
+            fashion, jewellery, and lifestyle products.
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<section class="container">
+
+
+<div class="mission">
+
+
+<div>
+
+<p class="label">
+Our Mission
+</p>
+
+
+<h2>
+Style that speaks for itself
+</h2>
+
+
+<p>
+At AB Fashion, we believe great style should not come
+at the cost of quality or accessibility.
+We partner with trusted suppliers to bring you curated
+collections combining trend-forward design with lasting craftsmanship.
+</p>
+
+
+<p>
+From statement jewellery to essential wardrobe staples,
+kids fashion, and cutting-edge electronics, our catalog
+is built for the modern shopper.
+</p>
+
+
+</div>
+
+
+
+<div class="image-box">
+
+<img 
+src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=700&h=520&fit=crop"
+alt="Fashion boutique">
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="values">
+
+
+<div 
+class="value-card"
+*ngFor="let value of values">
+
+
+<h3>
+{{value.label}}
+</h3>
+
+
+<p>
+{{value.desc}}
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<section>
+
+
+<p class="label">
+The Team
+</p>
+
+
+<h2>
+Meet the people behind AB Fashion
+</h2>
+
+
+
+<div class="team">
+
+
+<div 
+class="member"
+*ngFor="let person of team">
+
+
+<img 
+[src]="'https://images.unsplash.com/'+person.img+'?w=350&h=350&fit=crop&auto=format'"
+[alt]="person.name">
+
+
+<p>
+{{person.name}}
+</p>
+
+
+<span>
+{{person.role}}
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section class="contact">
+
+
+<div>
+
+
+<h2>
+Get in touch
+</h2>
+
+
+<p>
+Have a question or feedback?
+We would love to hear from you.
+Our team responds within 24 hours.
+</p>
+
+
+
+<div class="contact-item"
+*ngFor="let item of contact">
+
+
+<span>
+{{item.icon}}
+</span>
+
+{{item.text}}
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<form (submit)="sendMessage($event)">
+
+
+<input 
+type="text"
+placeholder="Your name">
+
+
+<input
+type="email"
+placeholder="Your email">
+
+
+<textarea
+rows="3"
+placeholder="Your message">
+</textarea>
+
+
+<button>
+Send Message
+</button>
+
+
+</form>
+
+
+
+</section>
+
+
+
+</section>
+
+
+</div>
