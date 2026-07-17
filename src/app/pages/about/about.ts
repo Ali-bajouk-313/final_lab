@@ -11,22 +11,22 @@ export class About {
 
   team = [
     {
-      name: "Amara Bello",
+      name: "Fatima Bajouk",
       role: "Co-Founder & CEO",
       img: "photo-1494790108377-be9c29b29330"
     },
     {
-      name: "Bilal Hassan",
+      name: "Mohammad Bajouk",
       role: "Co-Founder & Creative Director",
       img: "photo-1507003211169-0a1dd7228f2d"
     },
     {
-      name: "Sofia Chen",
+      name: "Zeinab Rida",
       role: "Head of Merchandising",
       img: "photo-1438761681033-6461ffad8d80"
     },
     {
-      name: "Marcus Wright",
+      name: "Ali Rida",
       role: "Head of Technology",
       img: "photo-1500648767791-00dcc994a43e"
     }
