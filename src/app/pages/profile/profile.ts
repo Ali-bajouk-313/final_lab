@@ -1,4 +1,4 @@
-import { Component, Signal } from '@angular/core';
+import { ChangeDetectionStrategy,Component, Signal } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import {IUser} from '../../shared/interface/user.interface'
@@ -6,6 +6,7 @@ import {signal} from'@angular/core';
 
 @Component({
 selector:'app-profile',
+changeDetection:ChangeDetectionStrategy.OnPush,
 standalone:true,
 templateUrl:'./profile.html',
 styleUrl:'./profile.css'
