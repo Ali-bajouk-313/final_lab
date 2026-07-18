@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy,Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { IProduct } from '../../../../shared/interface/product.interface';
 import { ProductService } from '../../../../shared/products-services/products.service';
 
 @Component({
   selector: 'app-product-card',
+  changeDetection:ChangeDetectionStrategy.OnPush,
   imports: [RouterLink],
   templateUrl: './product-card.html',
   styleUrl: './product-card.css',

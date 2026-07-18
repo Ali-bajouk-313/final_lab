@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-about',
   standalone: true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   imports: [CommonModule],
   templateUrl: './about.html',
   styleUrl: './about.css'

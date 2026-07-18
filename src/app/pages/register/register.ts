@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component } from '@angular/core';
 import { Button } from '../../shared/components/buttons/buttons'
 import { Input } from '../../shared/components/input/input'
 import { AuthService } from '../../core/auth/auth.service';
@@ -7,6 +7,7 @@ import { FormBuilder,FormGroup, Validator, ReactiveFormsModule, Validators } fro
 
 @Component({
   selector: 'app-register',
+  changeDetection:ChangeDetectionStrategy.OnPush,
   standalone:true,
   imports: [Button,Input,ReactiveFormsModule],
   templateUrl: './register.html',

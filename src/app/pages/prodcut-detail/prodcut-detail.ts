@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { IProduct } from '../../shared/interface/product.interface';
 import { ProductService } from '../../shared/products-services/products.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-prodcut-detail',
+  changeDetection:ChangeDetectionStrategy.OnPush,
   standalone:true,
   imports: [RouterLink],
   templateUrl: './prodcut-detail.html',

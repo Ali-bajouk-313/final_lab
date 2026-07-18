@@ -6,7 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { FormBuilder,FormGroup, Validator, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  changeDetection:ChangeDetectionStrategy.OnPush, // add this 
+  changeDetection:ChangeDetectionStrategy.OnPush, 
   selector: 'app-login',
   standalone:true,
   imports: [Button, Input,ReactiveFormsModule,RouterLink],

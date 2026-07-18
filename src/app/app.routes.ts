@@ -1,8 +1,4 @@
 import { Routes } from '@angular/router';
-import { Login}  from './pages/login/login'
-import { Register}  from './pages/register/register'
-import { Home } from './pages/home/home'
-import { Profile } from './pages/profile/profile'
 import { Products } from './pages/product-list/product-list';
 import { ProdcutDetail } from './pages/prodcut-detail/prodcut-detail';
 import {About} from './pages/about/about'
@@ -14,46 +10,42 @@ export const routes: Routes = [
         redirectTo:"home",
         pathMatch:"full"
     },
-    //loadcomponents
     {
         path:"home",
-        component:Home
+        loadComponent:()=> import('./pages/home/home').then(m=>m.Home)
     },
-        //loadcomponents
-
     {
         path:"login",
-        component:Login
+        loadComponent:()=> import('./pages/login/login').then(m=>m.Login)
     },
         //loadcomponents
 
     {
         path:"register",
-        component:Register
+        loadComponent:()=>import('./pages/register/register').then(m=>m.Register)
     },
-        // loadcomponents lazyloading
         // onpush
         // ng intiate destroy
         // validators
     {
         path:"profile",
-        component:Profile
+        loadComponent:()=>import('./pages/profile/profile').then(m=>m.Profile)
     },
     {
         path:"shop",
-        component:Products
+        loadComponent:()=>import('./pages/product-list/product-list').then(m=>m.Products)
     },
     {
         path:"shop/:id",
-        component:ProdcutDetail
+        loadComponent:()=>import('./pages/prodcut-detail/prodcut-detail').then(m=>m.ProdcutDetail)
     },
     {
         path:"About",
-        component:About
+        loadComponent:()=>import('./pages/about/about').then(m=>m.About)
     },
     {
         path:"footer",
-        component:Footer
+        loadComponent:()=>import('./shared/components/footer/footer').then(m=>m.Footer)
     }
 ];
 //use AG grid
