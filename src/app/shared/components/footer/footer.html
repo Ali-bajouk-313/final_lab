@@ -1,1 +1,175 @@
-<p>footer works!</p>
+<footer>
+
+
+<div class="footer-container">
+
+
+<div class="grid">
+
+
+<!-- Logo -->
+
+<div>
+
+<h2 class="logo">
+AB <span>Fashion</span>
+</h2>
+
+
+<p class="description">
+Premium fashion for every style.
+Curated collections that define modern elegance.
+</p>
+
+
+<div class="social">
+
+@for(icon of socialIcons; track $index){
+
+<button>
+<lucide-icon [img]="icon" size="13"></lucide-icon>
+</button>
+
+}
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- Quick Links -->
+
+<div>
+
+<h3>
+Quick Links
+</h3>
+
+
+<ul>
+
+@for(link of quickLinks; track link.name){
+
+<li>
+<a [routerLink]="link.path">
+{{link.name}}
+</a>
+</li>
+
+}
+
+</ul>
+
+
+</div>
+
+
+
+
+<!-- Categories -->
+
+<div>
+
+<h3>
+Categories
+</h3>
+
+
+<ul>
+
+@for(category of categories; track category){
+
+<li>
+<a routerLink="/shop">
+{{category}}
+</a>
+</li>
+
+}
+
+</ul>
+
+
+</div>
+
+
+
+
+<!-- Contact -->
+
+<div>
+
+<h3>
+Contact
+</h3>
+
+
+<ul>
+
+
+@for(item of contact; track item.text){
+
+<li class="contact-item">
+
+<lucide-icon 
+[img]="item.icon"
+size="13">
+</lucide-icon>
+
+<span>
+{{item.text}}
+</span>
+
+</li>
+
+
+}
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="bottom">
+
+
+<p>
+© 2026 AB Fashion. All rights reserved.
+</p>
+
+
+<div>
+
+<button>
+Privacy Policy
+</button>
+
+<button>
+Terms of Service
+</button>
+
+<button>
+Returns Policy
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+</footer>

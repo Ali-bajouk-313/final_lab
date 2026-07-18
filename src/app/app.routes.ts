@@ -6,6 +6,7 @@ import { Profile } from './pages/profile/profile'
 import { Products } from './pages/product-list/product-list';
 import { ProdcutDetail } from './pages/prodcut-detail/prodcut-detail';
 import {About} from './pages/about/about'
+import { Footer } from './shared/components/footer/footer';
 
 export const routes: Routes = [
     {
@@ -49,6 +50,11 @@ export const routes: Routes = [
     {
         path:"About",
         component:About
+    },
+    {
+        path:"footer",
+        component:Footer
     }
 ];
 //use AG grid
+// Dont forget to add the footer and the about page and merge them 
