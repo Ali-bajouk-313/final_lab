@@ -1,16 +1,17 @@
-import {ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit,signal } from '@angular/core';
 import { IProduct } from '../../shared/interface/product.interface';
 import { ProductService } from '../../shared/products-services/products.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import {LucideAngularModule, Heart, ShoppingCart,Star} from 'lucide-angular';
 
 @Component({
   selector: 'app-prodcut-detail',
-  changeDetection:ChangeDetectionStrategy.OnPush,
   standalone:true,
-  imports: [RouterLink],
+  imports: [RouterLink,LucideAngularModule],
   templateUrl: './prodcut-detail.html',
   styleUrl: './prodcut-detail.css',
 })
+
 export class ProdcutDetail implements OnInit {
 
   product!: IProduct;
@@ -19,8 +20,14 @@ export class ProdcutDetail implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute
   ) {}
+  Heart = Heart;
+  ShoppingCart = ShoppingCart;
+  Star = Star;
+  isFavorite = signal(false);
 
-
+  toggleFavorite() {
+    this.isFavorite.update(value => !value);
+  }
   ngOnInit(){
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -39,5 +46,9 @@ export class ProdcutDetail implements OnInit {
       });
 
   }
+  filledStars() {
+    return Math.round(this.product.rating.rate);
+  }
+  stars = [1,2,3,4,5];
 
 }
