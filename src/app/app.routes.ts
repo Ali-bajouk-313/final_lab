@@ -46,6 +46,14 @@ export const routes: Routes = [
     {
         path:"footer",
         loadComponent:()=>import('./shared/components/footer/footer').then(m=>m.Footer)
+    },
+    {
+        path:"favorite",
+        loadComponent:()=>import('./pages/favorite/favorite').then(m=>m.Favorite)
+    },
+    {
+        path:"cart",
+        loadComponent:()=>import('./pages/cart/cart').then(m=>m.Cart)
     }
 ];
 //use AG grid

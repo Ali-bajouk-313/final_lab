@@ -1,0 +1,118 @@
+.product-card {
+
+    width: 280px;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+
+}
+
+
+.product-card img {
+
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+
+}
+
+
+.product-card h3 {
+
+    font-size: 16px;
+    margin-top: 15px;
+
+}
+
+
+
+.rating {
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 10px 0;
+
+}
+
+
+.rating lucide-icon {
+
+    width: 20px;
+    height: 20px;
+    color: #ccc;
+    fill: transparent;
+
+}
+
+
+.rating lucide-icon.filled {
+
+    color: gold;
+    fill: gold;
+
+}
+
+
+
+.actions {
+
+    display: flex;
+    gap: 10px;
+
+}
+
+
+
+.favorite-btn {
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+}
+
+
+
+.favorite-btn lucide-icon {
+
+    width: 25px;
+    height: 25px;
+
+}
+
+
+
+.favorite-btn lucide-icon.favorite {
+
+    color: red;
+    fill: red;
+
+}
+
+
+
+.cart-btn {
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    background: black;
+    color: white;
+
+    padding: 10px 15px;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+.cart-btn lucide-icon {
+
+    width: 18px;
+    height: 18px;
+
+}

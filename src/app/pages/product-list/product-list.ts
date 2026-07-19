@@ -2,11 +2,10 @@ import { ChangeDetectionStrategy,Component } from '@angular/core';
 import { ProductService } from '../../shared/products-services/products.service';
 import { IProduct } from '../../shared/interface/product.interface';
 import {Button} from '../../shared/components/buttons/buttons'
-import { ProductCard } from './components/product-card/product-card';
+import { ProductCard } from '../../shared/components/product-card/product-card';
 
 @Component({
   selector: 'app-products',
-  changeDetection:ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [ProductCard],
   templateUrl: './product-list.html',
