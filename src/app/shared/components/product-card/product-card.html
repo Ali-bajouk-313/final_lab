@@ -30,7 +30,7 @@
 
     </div>
 
-    <div class="actions">
+    <div class="actions" (ngSubmit)="favorite(product)">
 
         <button 
             class="favorite-btn"
@@ -46,16 +46,11 @@
     </div>
 
     <button class="cart-btn">
-
-
             <lucide-icon
                 [img]="ShoppingCart">
             </lucide-icon>
-
-
             Add to Cart
+    </button>
 
-
-        </button>
   <hr />
 }

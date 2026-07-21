@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
-import { Products } from './pages/product-list/product-list';
-import { ProdcutDetail } from './pages/prodcut-detail/prodcut-detail';
-import {About} from './pages/about/about'
-import { Footer } from './shared/components/footer/footer';
+import { adminGuard } from './admin/core/adminguards/adminguards';
 
 export const routes: Routes = [
     {
@@ -19,7 +16,6 @@ export const routes: Routes = [
         loadComponent:()=> import('./pages/login/login').then(m=>m.Login)
     },
         //loadcomponents
-
     {
         path:"register",
         loadComponent:()=>import('./pages/register/register').then(m=>m.Register)
@@ -54,6 +50,37 @@ export const routes: Routes = [
     {
         path:"cart",
         loadComponent:()=>import('./pages/cart/cart').then(m=>m.Cart)
+    },
+    {
+        path:"admin",
+        loadComponent:()=>import('./admin/admin').then(m=>m.Admin),
+        canActivate:[adminGuard],
+        children:[
+            {
+            path:'',
+            redirectTo:"dashboard",
+            pathMatch:"full"
+            },
+            {
+            path:'dashboard',
+            loadComponent:()=>import('./admin/dashboared/dashboared').then(m=>m.Dashboared)
+            },
+            {
+            path: 'products',
+            loadComponent: () =>
+                import('./admin/products/products').then(m => m.Products)
+            },
+            {
+            path: 'users',
+            loadComponent: () =>
+                import('./admin/users/users').then(m => m.Users)
+            },
+            {
+            path: 'orders',
+            loadComponent: () =>
+                import('./admin/orders/orders').then(m => m.Orders)
+            }
+        ]
     }
 ];
 //use AG grid

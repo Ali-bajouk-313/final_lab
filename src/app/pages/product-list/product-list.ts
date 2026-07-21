@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy,Component } from '@angular/core';
-import { ProductService } from '../../shared/products-services/products.service';
+import { ProductService } from '../../shared/services/products-services/products.service';
 import { IProduct } from '../../shared/interface/product.interface';
 import {Button} from '../../shared/components/buttons/buttons'
 import { ProductCard } from '../../shared/components/product-card/product-card';
-
 @Component({
   selector: 'app-products',
   standalone: true,

@@ -16,7 +16,7 @@ styleUrl:'./profile.css'
 export class Profile{
 
 
-  user=signal<IUser | null>(null) ;
+  user:IUser| null=null ;
 
 
   constructor(

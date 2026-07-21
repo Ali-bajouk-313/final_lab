@@ -100,16 +100,16 @@ export class Register {
 
       return;
 
-    }
-    alert("Register clicked");
-    
+    }    
     const user={
 
     username:data.username!,
     email:data.email!,
     password:data.password!,
-    firstName:data.username!,
-    lastName: "User",
+    street:data.street,
+    city:data.city,
+    country:data.country,
+    phoneNumber:data.phoneNumber,
     dateOfBirth: "2000-01-01",
     role: "user"
 
@@ -119,10 +119,10 @@ export class Register {
     this.auth.register(user).subscribe({
     next:(res)=>{
     console.log("register is successful");
+    this.auth.addUser(res.user);
     this.auth.settoken(res.token);
     this.auth.setuser(res.user);
-    
-  this.router.navigate(["/home"])
+    this.router.navigate(["/home"])
   .then(success => {
     console.log("Navigation success:", success);
   })
