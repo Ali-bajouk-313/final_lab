@@ -2,14 +2,14 @@ import {ChangeDetectionStrategy, Component } from '@angular/core';
 import { Button } from '../../shared/components/buttons/buttons'
 import { Input } from '../../shared/components/input/input'
 import { AuthService } from '../../core/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router,RouterLink } from '@angular/router';
 import { FormBuilder,FormGroup, Validator, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   changeDetection:ChangeDetectionStrategy.OnPush,
   standalone:true,
-  imports: [Button,Input,ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterLink],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
@@ -101,19 +101,15 @@ export class Register {
       return;
 
     }    
-    const user={
-
-    username:data.username!,
-    email:data.email!,
-    password:data.password!,
-    street:data.street,
-    city:data.city,
-    country:data.country,
-    phoneNumber:data.phoneNumber,
+    const user = {
+    username: data.username!,
+    email: data.email!,
+    password: data.password!,
+    firstName:data.username,
+    lastName:"User",
     dateOfBirth: "2000-01-01",
     role: "user"
-
-    };
+  };
 
     console.log("PAYLOAD SENT:", user);
     this.auth.register(user).subscribe({
@@ -122,7 +118,8 @@ export class Register {
     this.auth.addUser(res.user);
     this.auth.settoken(res.token);
     this.auth.setuser(res.user);
-    this.router.navigate(["/home"])
+    console.log("PAYLOAD SENT:", user);
+    this.router.navigate(["/"])
   .then(success => {
     console.log("Navigation success:", success);
   })
@@ -133,31 +130,39 @@ export class Register {
 },
 error: (err) => {
 
-  if (err.status === 409) {
+  // if (err.status === 409) {
 
-    switch (err.error?.message) {
+  //   switch (err.error?.message) {
 
-      case 'Email Taken':
-        alert('This email is already registered.');
-        break;
+  //     case 'Email Taken':
+  //       alert('This email is already registered.');
+  //       break;
 
-      case 'Username Taken':
-        alert('This username is already taken.');
-        break;
+  //     case 'Username Taken':
+  //       alert('This username is already taken.');
+  //       break;
 
-      default:
-        alert(err.error?.message || 'Conflict occurred.');
-    }
+  //     default:
+  //       alert(err.error?.message || 'Conflict occurred.');
+  //   }
 
-    return;
-  }
+  //   return;
+  // }
 
-  if (err.status === 400) {
-    alert(err.error?.errors?.join('\n'));
-    return;
-  }
+  // if (err.status === 400) {
+  //   alert(err.error?.errors?.join('\n'));
+  //   return;
+  // }
 
-  alert('Something went wrong. Please try again.');
+  // alert('Something went wrong. Please try again.');
+    console.log("FULL ERROR:", err);
+    console.log("STATUS:", err.status);
+    console.log("BODY:", err.error);
+
+    alert(
+      err.error?.message ||
+      `Error ${err.status}`
+    );
 }
 });
   }

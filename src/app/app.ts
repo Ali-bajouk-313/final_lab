@@ -1,14 +1,11 @@
 import {ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { Navbar } from './shared/components/navbar/navbar';
 import { CommonModule } from '@angular/common';
-import {Register} from '../app/pages/register/register'
 import {RouterOutlet} from '@angular/router';
-import { Footer } from './shared/components/footer/footer';
-import { Layout } from './admin/layout/layout';
+import { MainLayout } from './core/layout/main-layout/main-layout';
 @Component({
   selector: 'app-root',
   changeDetection:ChangeDetectionStrategy.OnPush, 
-  imports: [Navbar, CommonModule,RouterOutlet],
+  imports: [CommonModule,RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

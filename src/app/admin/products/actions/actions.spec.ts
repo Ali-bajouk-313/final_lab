@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Actions } from './actions';
+import { ActionRenderer } from '../actions/actions';
 
-describe('Actions', () => {
-  let component: Actions;
-  let fixture: ComponentFixture<Actions>;
+describe('ActionRenderer', () => {
+  let component: ActionRenderer;
+  let fixture: ComponentFixture<ActionRenderer>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Actions],
+      imports: [ActionRenderer],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Actions);
+    fixture = TestBed.createComponent(ActionRenderer);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

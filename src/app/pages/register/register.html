@@ -14,11 +14,11 @@
             Full Name
             </label>
 
-            <app-input
+            <input
                     type="text"
-                    inputplaceholder="Enter your username"
+                    placeholder="Enter your username"
                     formControlName="username"
-            ></app-input>
+            >
            @if (registerForm.controls['username'].touched && registerForm.controls['username'].hasError('required')){
             <small style="color:red">Username is required</small>
            } 
@@ -28,14 +28,14 @@
             <label>
             Email
             </label>
-        <app-input
-                type="email" 
-                inputplaceholder="Enter your email"
-                formControlName="email">
-            ></app-input>
-            @if (registerForm.controls['email'].touched && registerForm.controls['email'].hasError('required')){
+        <input
+            type="email" 
+            placeholder="Enter your email"
+            formControlName="email"
+        >
+        @if (registerForm.controls['email'].touched && registerForm.controls['email'].hasError('required')){
             <small style="color:red">email is required</small>
-           }
+       }
         </div>
 
         <div class="form-group">
@@ -43,11 +43,11 @@
             Password
             </label>
 
-            <app-input
+            <input
                 type="password" 
-                inputplaceholder="Enter your password"
+                placeholder="Enter your password"
                 formControlName="password"
-            ></app-input>
+            >
             @if(
                 registerForm.controls['password'].touched &&
                 registerForm.controls['password'].hasError('minlength')
@@ -62,11 +62,11 @@
             <label>
             Confirm Password
             </label>
-            <app-input
+            <input
                 type="password" 
-                inputplaceholder="Confirm password"
+                placeholder="Confirm password"
                 formControlName="confirmPassword"
-            ></app-input>
+            >
             @if (registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].hasError('required')){
             <small style="color:red">Password is required</small>
             }
@@ -81,11 +81,11 @@
             Street
             </label>
 
-            <app-input
+            <input
                 type="text" 
-                inputplaceholder="Street address"
+                placeholder="Street address"
                 formControlName="street"
-            ></app-input>
+            >
         </div>
 
         <div class="address-row">
@@ -95,11 +95,11 @@
                 City
                 </label>
 
-                <app-input
+                <input
                     type="text" 
-                    inputplaceholder="City"
+                    placeholder="City"
                     formControlName="city"
-                ></app-input>
+                >
             </div>
 
             <div class="form-group">
@@ -108,11 +108,11 @@
                 Country
                 </label>
 
-                <app-input 
+                <input 
                 type="text"
-                inputplaceholder="Country"
+                placeholder="Country"
                 formControlName="country"
-                ></app-input>
+                >
             </div>
 
         </div>
@@ -122,19 +122,20 @@
             Phone Number
             </label>
 
-            <app-input 
+            <input 
             type="text"
-            inputplaceholder="Phone"
+            placeholder="Phone"
             formControlName="phoneNumber"
-            ></app-input>
+            >
 
         </div>
 
-        <app-button
-            buttonClass="auth-button"
+        <button
+            class="auth-button"
             type="submit"
             text="Create Account">
-        </app-button>
+            Register
+        </button>
         
         <div class="auth-link">
             Already have an account?

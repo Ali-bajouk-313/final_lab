@@ -8,15 +8,25 @@ import { IProduct } from '../../interface/product.interface';
 })
 
 export class ProductService {
-  private http = inject(HttpClient);
   favoriteProducts = signal<IProduct[]>([]);
 
   private api =
     'https://fakestoreapi.com/products';
+  
   products=signal<IProduct[]>([]);
 
+  constructor(
+    private http:HttpClient
+  ){}
+  
   getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.api);
+    if (this.products().length > 0) {
+    return new Observable(observer => {
+      observer.next(this.products());
+      observer.complete();
+    });
+  }
+  return this.http.get<IProduct[]>(this.api);
   }
   getProduct(id:number):Observable<IProduct>{
     return this.http.get<IProduct>(`${this.api}/${id}`);
@@ -42,11 +52,29 @@ export class ProductService {
     return this.favoriteProducts;
   }
   loadProducts(){
-    this.http.get<IProduct[]>(this.api)
-    .subscribe(products=>{
-      this.products.set(products);
-    });
+
+  if(this.products().length > 0){
+    return;
   }
+
+  this.http.get<IProduct[]>(this.api)
+    .subscribe({
+
+      next:(products)=>{
+
+        this.products.set(products);
+
+      },
+
+      error:(err)=>{
+
+        console.log(err);
+
+      }
+
+    });
+
+}
   addProduct(product:IProduct):Observable<IProduct>{
     return this.http.post<IProduct>(this.api,product);
   }
@@ -56,4 +84,5 @@ export class ProductService {
   deleteProduct(id:number):Observable<IProduct>{
     return this.http.delete<IProduct>(`${this.api}/${id}`);
   } 
+  
 }

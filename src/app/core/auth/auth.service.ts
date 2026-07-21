@@ -74,7 +74,7 @@ export class AuthService{
 
   }
 
-  register(payload:{username:string;email:string;password:string;street:string;city:string;country:string;phoneNumber:string;dateOfBirth:string;role:string;}){
+  register(payload:{username:string;email:string;password:string;firstName:string;lastName:string;dateOfBirth:string;role:string;}){
     return this.http.post<IRegisterResponse>(
       `${this.BaseUrl}/auth/register`,
       payload
@@ -98,12 +98,11 @@ export class AuthService{
   getuser(){
     return this.currentuser();
   }
-  getCurrentUser(){
-  return this.http.get<IUser>(
-    `${this.BaseUrl}/auth/user`
-  );
-
-  }
+  // getCurrentUser(){
+  // return this.http.get<IUser>(
+  //   `${this.BaseUrl}/user`
+  // );
+  // }
   isAdmin(): boolean {
     const user = this.currentuser();
     return user?.role === "admin";

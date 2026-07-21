@@ -1,0 +1,111 @@
+<div class="products-container">
+
+@for(product of products(); track product.id){
+
+<div class="product-card">
+
+
+<a [routerLink]="['/shop',product.id]">
+
+
+<div class="image-box">
+
+<img 
+[src]="product.image"
+[alt]="product.title">
+
+</div>
+
+
+<p class="category">
+{{product.category}}
+</p>
+
+
+<h3>
+{{product.title}}
+</h3>
+
+
+<div class="rating">
+
+
+@for(star of stars; track star){
+
+<lucide-icon
+
+[img]="Star"
+
+[class.filled]="star <= filledStars(product)">
+
+</lucide-icon>
+
+}
+
+
+<span>
+{{product.rating.rate}}
+({{product.rating.count}})
+</span>
+
+
+</div>
+
+
+
+<p class="price">
+${{product.price}}
+</p>
+
+
+</a>
+
+
+
+<div class="actions">
+
+
+<button
+class="favorite-btn"
+(click)="toggleFavorite(product.id)">
+
+
+<lucide-icon
+
+[img]="Heart"
+
+[class.favorite]="isFavorite(product.id)">
+
+</lucide-icon>
+
+
+</button>
+
+
+
+<button 
+class="cart-btn"
+(click)="favorite(product)">
+
+
+<lucide-icon
+
+[img]="ShoppingCart">
+
+</lucide-icon>
+
+
+Add To Cart
+
+
+</button>
+
+
+</div>
+
+
+</div>
+
+}
+
+</div>

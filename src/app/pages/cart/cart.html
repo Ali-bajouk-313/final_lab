@@ -1,1 +1,36 @@
-<p>cart works!</p>
+
+@if(product){
+<a [routerLink]="['/shop']">
+
+    <div class="product-card">
+        <img [src]="product.image">
+
+        <h3>
+            {{product.title}}
+        </h3>
+        <p>
+            {{product.description}}
+        </p>
+
+        <p>
+            {{product.price}} $
+        </p>
+
+        <div>
+            <button class="favorite-btn" (click)="toggleFavorite()">
+            <lucide-icon
+                [img]="Heart"
+                [class.favorite]="isFavorite()">
+            </lucide-icon>
+        </button>
+        </div>
+        <button class="cart-btn" click="add()">
+            <lucide-icon [img]="ShoppingCart"></lucide-icon>
+            Add quantity
+        </button>
+
+    </div>
+
+</a>
+
+}

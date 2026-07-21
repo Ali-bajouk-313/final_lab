@@ -1,1 +1,191 @@
-<p>Hello works!</p>
+<section class="hero">
+
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <p class="subtitle">
+                New Collection - Summer 2026
+            </p>
+
+            <h1>
+                Define <br>
+                Your Own <br>
+                Style
+            </h1>
+
+            <p class="description">
+                Discover premium fashion, jewellery, and electronics curated for the modern wardrobe.
+            </p>
+
+            <div class="buttons">
+
+                <button class="primary" routerLink="/register">
+                    Shop Now
+                </button>
+
+                <button class="secondary" routerLink="/about">
+                    Our Story
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=820&fit=crop&auto=format">
+
+            <div class="offer">
+                <small>Summer Edit 2026</small>
+                <p>Up to 40% off selected styles</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Statistics -->
+
+<section class="stats">
+
+    @for(stat of stats; track stat.label){
+
+    <div>
+
+        <h2>{{stat.value}}</h2>
+
+        <span>{{stat.label}}</span>
+
+    </div>
+
+    }
+
+</section>
+
+<!-- Categories -->
+
+<section class="container">
+
+    <div class="section-title">
+
+        <div>
+
+            <small>Browse By</small>
+
+            <h2>Featured Categories</h2>
+
+        </div>
+
+        <button routerLink="/register">
+            View All
+        </button>
+
+    </div>
+
+    <div class="categories">
+
+        @for(category of categories; track category.key){
+
+        <div class="category" routerLink="/shop">
+
+            <img [src]="category.image">
+
+            <div class="overlay">
+
+                <h3>{{category.label}}</h3>
+
+                <span>Shop Now</span>
+
+            </div>
+
+        </div>
+
+        }
+
+    </div>
+
+</section>
+
+<!-- Services -->
+
+<section class="services">
+
+    @for(service of services; track service.title){
+
+    <div>
+
+        <h3>{{service.title}}</h3>
+
+        <p>{{service.desc}}</p>
+
+    </div>
+
+    }
+
+</section>
+
+<!-- Featured Products -->
+
+<section class="container">
+
+    <div class="section-title">
+
+        <div>
+
+            <small>Hand Picked</small>
+
+            <h2>Featured Products</h2>
+
+        </div>
+
+        <button routerlink="/shop">
+            View All
+        </button>
+
+    </div>
+
+
+
+    <div class="products">
+
+        <app-product-card></app-product-card>
+
+    </div>
+
+    
+
+</section>
+
+<!-- Newsletter -->
+
+<section class="newsletter">
+
+    <div class="newsletter-content">
+
+        <small>Stay Updated</small>
+
+        <h2>Join Our Newsletter</h2>
+
+        <p>
+            Be the first to know about new collections,
+            exclusive offers, and style inspiration.
+        </p>
+
+        <form>
+
+            <input
+                type="email"
+                placeholder="Your email address">
+
+            <button>
+                Subscribe
+            </button>
+
+        </form>
+
+    </div>
+
+</section>

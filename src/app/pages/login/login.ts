@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component, RESPONSE_INIT } from '@angular/core';
-import {Button} from "../../shared/components/buttons/buttons";
-import { Input } from "../../shared/components/input/input";
 import { AuthService } from '../../core/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder,FormGroup, Validator, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,7 +7,7 @@ import { FormBuilder,FormGroup, Validator, ReactiveFormsModule, Validators } fro
   changeDetection:ChangeDetectionStrategy.OnPush, 
   selector: 'app-login',
   standalone:true,
-  imports: [Button, Input,ReactiveFormsModule,RouterLink],
+  imports: [ ReactiveFormsModule,RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -24,7 +22,7 @@ export class Login {
 
   ){}
   ngOnInit(): void{
-      this.loginform=this.fb.group({
+    this.loginform=this.fb.group({
 
     email: [
         '',
@@ -42,8 +40,8 @@ export class Login {
           Validators.minLength(6)
         ]
       ]
-  })
-}
+    })
+  }
 
   login(){
     console.log(this.loginform.value);
@@ -76,7 +74,7 @@ export class Login {
             }
           );
         }else{
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
 
         }
         console.log("User from login", response.user)

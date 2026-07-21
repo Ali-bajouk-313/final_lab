@@ -63,12 +63,8 @@ export class Products {
 
 
   addProduct(){
-
-    console.log("open add product form");
-
+    console.log("product added");
   }
-
-
 
   editProduct(product:IProduct){
 
@@ -77,9 +73,8 @@ export class Products {
   }
 
 
-
   deleteProduct(product:IProduct){
-
+    
     this.productService
     .deleteProduct(product.id)
     .subscribe(()=>{
@@ -164,7 +159,7 @@ export class Products {
       },
 
       cellRenderer:(params:any)=>{
-
+        
         return `
         ⭐ ${params.value}
         `;

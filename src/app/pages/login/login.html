@@ -17,13 +17,7 @@
 
                 <label>Email</label>
 
-                
-                    <app-input
-                            type="email"
-                            inputplaceholder="Enter your email"
-                            formControlName="email"
-                    ></app-input>
-
+                <input type="email" placeholder="Enter your email" formControlName="email">
 
 
 
@@ -32,27 +26,8 @@
             <div class="form-group">
 
                 <label>Password</label>
-
-                    <!-- <app-input
-                            type="password"
-                            inputplaceholder="Enter your password"
-                            formControlName="password"
-                            >
-
-                    ></app-input>
-
-
-                @if(password.length > 0 && password.length<6 ) {
-
-                    <small class="error">
-                        Password must be at least 6 characters.
-                    </small>
-
-                }     -->
-                <app-input
-                    type="password"
-                    formControlName="password">
-                </app-input>
+                
+                <input type="password" placeholder="Enter your password" formControlName="password">
 
                 @if(loginform.controls['password'].touched &&
                 loginform.controls['password'].hasError('minlength')){
@@ -63,26 +38,11 @@
 
             </div>
 
-          
-
-            <app-button 
-                 text="Login"
-                 buttonClass="auth-button"
-                 type="submit"
-                 >
-            </app-button>
+            <button class="auth-button" type="submit">Login</button>
 
         </form>
 
-        <div class="divider">
-            OR
-        </div>
-
-        <app-button
-        buttonClass="google-button"
-        text="Continue with Google"
-        >
-        </app-button>
+        
 
         <div class="auth-link">
 

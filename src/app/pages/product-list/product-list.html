@@ -1,12 +1,189 @@
-<h2>
-Products
-</h2>
+<div class="page">
 
 
-<div class="products-container">
+    <div class="header">
+
+        <div>
+
+        <h1>
+        All Products
+        </h1>
+
+        <p>
+        34 products
+        </p>
+
+        </div>
+
+        <div class="actions">
 
 
-<app-product-card></app-product-card>
+        <select [(ngModel)]="sortBy">
+
+        <option>
+        Default
+        </option>
+
+        <option>
+        Price Low to High
+        </option>
+
+        <option>
+        Top Rated
+        </option>
+
+        </select>
+
+
+
+        <button class="active">
+        ▦
+        </button>
+
+
+        <button>
+        ☷
+        </button>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="search">
+
+        <span>
+        ⌕
+        </span>
+
+        <input
+        placeholder="Search products..."
+        [(ngModel)]="search"
+        />
+
+    </div>
+
+    <div class="content">
+
+        <aside class="sidebar">
+            <h5>
+            CATEGORY
+            </h5>
+
+            @for(category of categories; track category.name){
+
+
+            <button
+            [class.active]="selectedCategory === category.name"
+            (click)="selectedCategory = category.name">
+
+
+            <span>
+            {{category.name}}
+            </span>
+
+
+            <span>
+            {{category.count}}
+            </span>
+
+
+            </button>
+
+            }
+            <h5>
+            PRICE RANGE
+            </h5>
+
+            <input
+                type="range"
+                min="0"
+                max="1000"
+                [(ngModel)]="maxPrice"
+            />
+
+            <div class="price-input">
+
+
+                <div>
+
+                <label>
+                Min ($)
+                </label>
+
+                <input
+                type="number"
+                [(ngModel)]="minPrice">
+
+                </div>
+
+            <div>
+
+            <label>
+            Max ($)
+            </label>
+
+
+            <input
+            type="number"
+            [(ngModel)]="maxPrice">
+
+            </div>
+
+            </div>
+
+
+            <div class="price-value">
+
+                <span>
+                ${{minPrice}}.00
+                </span>
+
+                <span>
+                ${{maxPrice}}.00
+                </span>
+
+            </div>
+
+            <h5>
+            MIN RATING
+            </h5>
+
+
+
+            @for(rate of ratings; track rate.value){
+
+                <button>
+
+
+                <span class="stars">
+
+                ★★★★★
+
+                </span>
+
+
+                {{rate.label}}
+
+
+                </button>
+
+            }
+
+            <a>
+            Reset all filters
+            </a>
+
+        </aside>
+
+        <section class="products">
+
+            <app-product-card></app-product-card>
+
+        </section>
+
+    </div>
 
 
 </div>
