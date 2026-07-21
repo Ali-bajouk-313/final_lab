@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit,signal } from '@angular/core';
 import { IProduct } from '../../shared/interface/product.interface';
-import { ProductService } from '../../shared/products-services/products.service';
+import { ProductService } from '../../shared/services/products-services/products.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {LucideAngularModule, Heart, ShoppingCart,Star} from 'lucide-angular';
 

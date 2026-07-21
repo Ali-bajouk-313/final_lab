@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule, Heart, ShoppingCart, Star } from 'lucide-angular';
 import { IProduct } from '../../interface/product.interface';
-import { ProductService } from '../../products-services/products.service';
+import { ProductService } from '../../services/products-services/products.service';
 @Component({
   selector: 'app-product-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,6 +16,7 @@ import { ProductService } from '../../products-services/products.service';
 export class ProductCard {
 
   products: IProduct[] = [];
+  product!: IProduct;
 
   Heart = Heart;
   ShoppingCart = ShoppingCart;
@@ -28,6 +29,7 @@ export class ProductCard {
   constructor(
     private productService: ProductService
   ) {}
+
 
   ngOnInit() {
 
@@ -50,11 +52,13 @@ export class ProductCard {
 
   }
 
+
   filledStars(product: IProduct) {
 
     return Math.floor(product.rating.rate);
 
   }
+
 
   toggleFavorite(productId: number) {
 
@@ -63,13 +67,10 @@ export class ProductCard {
     const updated = new Set(favorites);
 
     if(updated.has(productId)){
-
       updated.delete(productId);
-
     }
     else {
       updated.add(productId);
-
     }
     return updated;
 
@@ -79,7 +80,9 @@ export class ProductCard {
   isFavorite(productId:number){
 
     return this.favoriteProducts().has(productId);
-
+  }
+  favorite(product:IProduct){
+    this.productService.addToFavorite(product)
   }
 
 }

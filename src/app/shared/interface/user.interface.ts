@@ -8,7 +8,7 @@ email:string;
 
 password:string;
 
-role:'customer'|'admin';
+role:'user'|'admin';
 
 addresses:IAddress[];
 

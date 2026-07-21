@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import {Register} from '../app/pages/register/register'
 import {RouterOutlet} from '@angular/router';
 import { Footer } from './shared/components/footer/footer';
+import { Layout } from './admin/layout/layout';
 @Component({
   selector: 'app-root',
   changeDetection:ChangeDetectionStrategy.OnPush, 

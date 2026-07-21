@@ -67,8 +67,19 @@ export class Login {
       next:(response)=>{
         this.auth.setuser(response.user)
         this.auth.settoken(response.token);
-        this.router.navigate(['/home']);
-        console.log("USer from login", response.user)
+        this.auth.addUser(response.user);
+        if(this.auth.isAdmin()){
+          console.log('you are an Admin');
+          this.router.navigate(['/admin/products']).then(
+            success=>{
+              console.log('Navigation',success);
+            }
+          );
+        }else{
+          this.router.navigate(['/home']);
+
+        }
+        console.log("User from login", response.user)
       },
       error:(err)=>{
       console.log("REGISTER ERROR", err);

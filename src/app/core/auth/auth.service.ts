@@ -18,8 +18,7 @@ interface IRegisterResponse{
   providedIn:'root',
 })
 export class AuthService{
-
-
+  private users=signal<IUser[]>([]);
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -60,6 +59,7 @@ export class AuthService{
     );
     
   }
+  
   removeToken(){
 
     this.cookieservice.delete(this.tokenkey);
@@ -67,17 +67,20 @@ export class AuthService{
     this.isLoggedIn.set(false);
 
   }
+
   isAuthenticated(): boolean {
 
     return this.isLoggedIn();
 
   }
-  register(payload:{username:string,email:string,password:string,firstName:string;lastName:string;dateOfBirth:string;role:string;}){
+
+  register(payload:{username:string;email:string;password:string;street:string;city:string;country:string;phoneNumber:string;dateOfBirth:string;role:string;}){
     return this.http.post<IRegisterResponse>(
       `${this.BaseUrl}/auth/register`,
       payload
     );
   }
+  
   logout(){
 
   this.cookieservice.delete(this.tokenkey);
@@ -93,14 +96,23 @@ export class AuthService{
     this.currentuser.set(user);
   }
   getuser(){
-    return this.currentuser;
+    return this.currentuser();
   }
   getCurrentUser(){
-
   return this.http.get<IUser>(
     `${this.BaseUrl}/auth/user`
   );
 
-}
+  }
+  isAdmin(): boolean {
+    const user = this.currentuser();
+    return user?.role === "admin";
+  }
 
+  getUsers(){
+    return this.users.asReadonly();
+  }
+  addUser(user:IUser){
+    this.users.update(users=>[...users,user])
+  }
 }
