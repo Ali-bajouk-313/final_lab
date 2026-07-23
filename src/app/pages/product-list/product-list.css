@@ -216,10 +216,6 @@ width:100%;
 
 
 
-
-
-
-
 .price-input{
 
 display:flex;
@@ -259,11 +255,6 @@ border:1px solid #ddd;
 }
 
 
-
-
-
-
-
 .price-value{
 
 display:flex;
@@ -277,8 +268,6 @@ color:#777;
 margin-top:8px;
 
 }
-
-
 
 
 

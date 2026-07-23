@@ -1,25 +1,135 @@
-<div class="flex justify-between items-center mb-5">
+@if(showForm()){
 
 
-<h1 class="text-3xl font-bold">
+<div class="product-form">
+
+
+<h2>
+
+{{selectedProduct().id ? 
+'Edit Product' :
+'Add Product'}}
+
+</h2>
+
+
+
+<input
+
+placeholder="Title"
+
+[(ngModel)]="selectedProduct().title"
+
+/>
+
+
+
+<input
+
+placeholder="Price"
+
+type="number"
+
+[(ngModel)]="selectedProduct().price"
+
+/>
+
+
+
+<input
+
+placeholder="Category"
+
+[(ngModel)]="selectedProduct().category"
+
+/>
+
+
+
+<input
+
+placeholder="Image URL"
+
+[(ngModel)]="selectedProduct().image"
+
+/>
+
+
+
+<textarea
+
+placeholder="Description"
+
+[(ngModel)]="selectedProduct().description">
+
+</textarea>
+
+
+
+
+<div class="form-buttons">
+
+
+<button
+
+(click)="saveProduct()">
+
+Save
+
+</button>
+
+
+
+<button
+
+(click)="closeForm()">
+
+Cancel
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+}
+
+
+
+<div class="top">
+
+
+<div class="top-bar">
+
+
+<h1 class="title">
+
 Products
+
 </h1>
 
 
 
 <input
 
-class="border p-2 rounded"
+class="search-input"
 
 placeholder="Search products..."
 
 (input)="search($event)"
 
->
+/>
+
+
 
 <button
-(click)="addProduct()"
-class="bg-black text-white px-4 py-2 rounded">
+
+class="add-btn"
+
+(click)="addProduct()">
 
 + Add Product
 
@@ -30,16 +140,19 @@ class="bg-black text-white px-4 py-2 rounded">
 
 
 
+
 <ag-grid-angular
 
 class="ag-theme-alpine"
-
-style="height:600px;width:100%"
 
 [rowData]="products()"
 
 [columnDefs]="columnDefs"
 
+domLayout="autoHeight">
 
->
 </ag-grid-angular>
+
+
+
+</div>

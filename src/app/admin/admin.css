@@ -1,0 +1,167 @@
+.layout{
+    display:flex;
+    width:100%;
+    min-height:100vh;
+}
+.side{
+
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    
+}
+.sidebar{
+    width: 260px;
+    background: #000000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    padding: 25px 20px;
+}
+
+.logo {
+    text-decoration: none;
+    color: white;
+}
+
+.logo h2 {
+    margin: 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.logo hr{
+        color: #b88e2f;
+
+}
+
+.logo span {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.03em;
+    margin-left: 4px;
+}
+
+.logo p {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #b88e2f;
+}
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+    padding: 12px 15px;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    border-radius: 8px;
+}
+
+
+.menu-item:hover {
+    background: #b88e2f;
+}
+
+
+.profile {
+    margin-top:auto;
+    border-top: 1px solid #b88e2f;
+    padding-top: 20px;
+}
+
+
+.user {
+    display: flex;
+    gap:5px;
+}
+
+
+.avatar {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+    background: #b88e2f;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+.user h4,
+.user p {
+    margin: 3px 0;
+}
+
+
+.user p {
+    color: #9ca3af;
+    font-size: 13px;
+    margin-top:10px;
+}
+
+
+.logout-btn {
+    width:100%;
+    padding:12px;
+
+    background:#b88e2f;
+    color:white;
+
+    border:none;
+    border-radius:8px;
+
+    cursor:pointer;
+}
+
+
+.main {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+.main button{
+    color:#9ca3af
+}
+
+.topbar {
+    height:70px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 35px;
+
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+}
+
+
+.content {
+    flex:1;
+    padding:30px;
+    background:#f8fafc;
+}

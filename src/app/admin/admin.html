@@ -1,1 +1,64 @@
-<router-outlet></router-outlet>
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="side">
+            <div class="logo-section">
+                <a routerLink="/" class="logo">
+                    <h2>AB<span>Fashion</span></h2>
+                    <p>ADMIN PANEL</p>
+                    <hr>
+                </a>
+            </div>
+
+            <nav class="menu">
+                @for(item of navItems; track item.id){
+                    <a class="menu-item" [routerLink]="item.route" routerLinkActive="active">
+                        <i [class]="item.icon"></i>
+                        <span>{{ item.label }}</span>
+                    </a>
+                }
+            </nav>
+        </div>
+        @if(user()){
+        <div class="profile">
+
+            <div class="user">
+                <div class="avatar">
+                    {{ user()?.username?.charAt(0)?.toUpperCase() }}
+                </div>
+
+                <p>{{ user()?.email }}</p>
+            </div>
+
+            <button
+                class="logout-btn"
+                (click)="logout()">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sign Out
+            </button>
+
+        </div>
+        }
+    </aside>
+
+    <div class="main">
+
+        <header class="topbar">
+
+            <h2>{{ activeLabel }}</h2>
+
+            <button routerLink="/shop">
+              < Back to Store
+            </button>
+
+        </header>
+
+        <main class="content">
+            <router-outlet></router-outlet>
+        </main>
+
+    </div>
+
+</div>

@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { IUser } from '../../shared/interface/user.interface';
 import { catchError, Observable } from 'rxjs';
 import {signal} from'@angular/core';
+import { tap } from 'rxjs';
 
 interface ILoginResponse{
   token:string;
@@ -98,11 +99,16 @@ export class AuthService{
   getuser(){
     return this.currentuser();
   }
-  // getCurrentUser(){
-  // return this.http.get<IUser>(
-  //   `${this.BaseUrl}/user`
-  // );
-  // }
+  getCurrentUser(){
+
+  return this.http.get<IUser>(
+    `${this.BaseUrl}/user`
+    ).pipe(
+      tap(user => {
+        this.currentuser.set(user);
+      })
+    );
+  }
   isAdmin(): boolean {
     const user = this.currentuser();
     return user?.role === "admin";

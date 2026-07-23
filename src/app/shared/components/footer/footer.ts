@@ -46,11 +46,15 @@ export class Footer {
     },
     {
       name:"about",
-      path:"/about"
+      path:"/About"
     },
     {
-      name:"wishlist",
-      path:"/wishlist"
+      name:"favorite",
+      path:"/favorite"
+    },
+    {
+      name:"cart",
+      path:"/cart"
     }
   ];
 

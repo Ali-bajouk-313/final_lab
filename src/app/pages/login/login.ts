@@ -68,7 +68,7 @@ export class Login {
         this.auth.addUser(response.user);
         if(this.auth.isAdmin()){
           console.log('you are an Admin');
-          this.router.navigate(['/admin/products']).then(
+          this.router.navigate(['/admin']).then(
             success=>{
               console.log('Navigation',success);
             }
