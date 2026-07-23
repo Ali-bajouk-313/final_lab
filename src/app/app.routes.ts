@@ -80,16 +80,21 @@ export const routes: Routes = [
             path: 'orders',
             loadComponent: () =>
                 import('./admin/orders/orders').then(m => m.Orders)
+            },
+            {
+            path: 'carts',
+            loadComponent: () =>
+                import('./admin/cart/cart').then(m => m.Cart)
             }
         ]
     }
 ];
-//use AG grid
+// use AG grid
 // Dont forget to add the footer and the about page and merge them 
 // detect errors in interceptors
 // change product card place
-//localstorage for favorites and add to cart
-//for statics testing pretier eslint
+// localstorage for favorites and add to cart
+// for statics testing pretier eslint
 // techniques for testing TDD and TLD
 // use before each test
 // onpush
