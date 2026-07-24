@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, RESPONSE_INIT } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink,ActivatedRoute } from '@angular/router';
 import { FormBuilder,FormGroup, Validator, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -18,7 +18,8 @@ export class Login {
    constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router:Router
+    private router:Router,
+    private route:ActivatedRoute
 
   ){}
   ngOnInit(): void{
@@ -73,9 +74,11 @@ export class Login {
               console.log('Navigation',success);
             }
           );
-        }else{
-          this.router.navigate(['/']);
-
+        }
+        else{
+          const returnUrl =
+          this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+          this.router.navigateByUrl(returnUrl);
         }
         console.log("User from login", response.user)
       },
@@ -93,7 +96,6 @@ export class Login {
         alert('Invalid email or password.');
         return;
       }
-
       alert(err.error?.message ?? 'Login failed.');
       }
     })

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { adminGuard } from './admin/core/adminguards/adminguards';
 import { AuthLayout } from './core/layout/auth-layout/auth-layout';
 import { MainLayout } from './core/layout/main-layout/main-layout';
+import { authGuard } from './core/auth/auth.guard';
 export const routes: Routes = [
     
     {
@@ -14,6 +15,7 @@ export const routes: Routes = [
             },
             {
                 path:"profile",
+                canActivate:[authGuard],
                 loadComponent:()=>import('./pages/profile/profile').then(m=>m.Profile)
             },
             {
@@ -30,10 +32,12 @@ export const routes: Routes = [
             },
             {
                 path:"favorite",
+                canActivate:[authGuard],
                 loadComponent:()=>import('./pages/favorite/favorite').then(m=>m.Favorite)
             },
             {
                 path:"cart",
+                canActivate:[authGuard],
                 loadComponent:()=>import('./pages/cart/cart').then(m=>m.Cart)
             },
         ]
@@ -100,3 +104,5 @@ export const routes: Routes = [
 // onpush
 // ng intiate destroy
 // validators
+// ng models replacements
+//Rxjs to store data

@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable,inject,PLATFORM_ID } from '@angular/core';
 import {Router} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { IUser } from '../../shared/interface/user.interface';
 import { catchError, Observable } from 'rxjs';
 import {signal} from'@angular/core';
 import { tap } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 interface ILoginResponse{
   token:string;
@@ -20,16 +21,21 @@ interface IRegisterResponse{
 })
 export class AuthService{
   private users=signal<IUser[]>([]);
+  private platformId = inject(PLATFORM_ID);
   constructor(
     private router: Router,
     private http: HttpClient,
     private cookieservice: CookieService,
   ){
-    if(this.gettoken()){
+   if(isPlatformBrowser(this.platformId)){
 
-      this.isLoggedIn.set(true);
+    const savedUsers = localStorage.getItem('users');
 
+    if(savedUsers){
+      this.users.set(JSON.parse(savedUsers));
     }
+
+  }
   }
 
   tokenkey='token';
@@ -41,6 +47,7 @@ export class AuthService{
   gettoken(): string{
     return this.cookieservice.get(this.tokenkey);
   }
+  
   settoken(token:string):void{
     const expired=new Date();
     expired.setHours(expired.getHours()+2);
@@ -48,7 +55,6 @@ export class AuthService{
     this.cookieservice.set(this.tokenkey,token,{path:'/',expires:expired});
     this.isLoggedIn.set(true);
   }
-  
 
   login(email:string,password:string):Observable<ILoginResponse>{
    return this.http.post<ILoginResponse>(
@@ -69,7 +75,7 @@ export class AuthService{
 
   }
 
-  isAuthenticated(): boolean {
+  isAuthenticated() {
 
     return this.isLoggedIn();
 
@@ -113,11 +119,29 @@ export class AuthService{
     const user = this.currentuser();
     return user?.role === "admin";
   }
-
   getUsers(){
     return this.users.asReadonly();
   }
+
   addUser(user:IUser){
-    this.users.update(users=>[...users,user])
+    this.users.update(users=>[...users,user]);
+    this.save();
+    if(isPlatformBrowser(this.platformId)){
+
+    localStorage.setItem(
+      'users',
+      JSON.stringify(this.users())
+    );
+
+  }
+  }
+  removeUser(id:number){
+    this.users.update(users=>
+      users.filter(user=>user.id !==id)
+    );
+    this.save();
+  }
+  private save(){
+    localStorage.setItem('users',JSON.stringify(this.users()));
   }
 }

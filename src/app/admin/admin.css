@@ -122,17 +122,13 @@
     margin-top:10px;
 }
 
-
 .logout-btn {
     width:100%;
     padding:12px;
-
     background:#b88e2f;
     color:white;
-
     border:none;
     border-radius:8px;
-
     cursor:pointer;
 }
 

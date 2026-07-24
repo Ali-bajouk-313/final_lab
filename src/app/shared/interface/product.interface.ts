@@ -17,7 +17,10 @@ export interface IProduct{
     category:string;
 
     image:string;
-
+    
     rating:IRating;
 
+}
+export interface ICart extends IProduct{
+    quantity:number;
 }

@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink,Router } from '@angular/router';
 import { LucideAngularModule, Heart, ShoppingCart, Star } from 'lucide-angular';
 import { IProduct } from '../../../../shared/interface/product.interface';
 import { ProductService } from '../../../../shared/services/products-services/products.service';
-
+import { CartService } from '../../../../shared/services/cart-services/cart-services';
+import { AuthService } from '../../../../core/auth/auth.service';
 @Component({
   selector: 'app-product-card',
   standalone:true,
@@ -28,7 +29,10 @@ export class ProductCard {
 
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private auth:AuthService,
+    private Cart:CartService,
+    private router:Router
   ){}
 
 
@@ -106,6 +110,14 @@ export class ProductCard {
 
   }
 
-
+  addToCart(product:IProduct){
+    if(!this.auth.isAuthenticated()){
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.Cart.addToCart(product);
+    console.log('product added');
+    alert('product added')
+  }
 
 }

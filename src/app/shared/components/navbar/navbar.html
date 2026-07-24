@@ -71,7 +71,7 @@
 
 
 <div class="actions">
-
+    @if(isLoggedIn) {
     <a routerLink="/favorite">
         <lucide-icon [img]="Heart"></lucide-icon>
     </a>
@@ -80,7 +80,6 @@
         <lucide-icon [img]="ShoppingCart"></lucide-icon>
     </a>
 
-    @if(isLoggedIn) {
 
         <a routerLink="/profile">
             <lucide-icon [img]="User"></lucide-icon>
