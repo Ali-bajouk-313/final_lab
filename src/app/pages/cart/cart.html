@@ -1,36 +1,61 @@
+<div class="cart-container">
 
-@if(product){
-<a [routerLink]="['/shop']">
 
-    <div class="product-card">
-        <img [src]="product.image">
+<h1>Your Cart</h1>
 
+
+    @if(carts().length === 0){
+
+        <p>
+            Your carts is empty.
+        </p>
+
+    }
+    @else {
+
+
+    @for(item of carts(); track item.id){
+
+    <div class="cart-item">
+
+    <img 
+    [src]="item.image"
+    [alt]="item.title">
+
+
+    <div>
         <h3>
-            {{product.title}}
+        {{item.title}}
         </h3>
         <p>
-            {{product.description}}
+        Price: ${{item.price}}
         </p>
 
         <p>
-            {{product.price}} $
+        Quantity: {{item.quantity}}
         </p>
-
-        <div>
-            <button class="favorite-btn" (click)="toggleFavorite()">
-            <lucide-icon
-                [img]="Heart"
-                [class.favorite]="isFavorite()">
-            </lucide-icon>
-        </button>
-        </div>
-        <button class="cart-btn" click="add()">
-            <lucide-icon [img]="ShoppingCart"></lucide-icon>
-            Add quantity
-        </button>
 
     </div>
 
-</a>
 
-}
+    <button
+    (click)="remove(item.id)">
+    Remove
+    </button>
+
+
+    </div>
+
+
+    }
+
+    <button
+    (click)="clear()">
+    Clear Cart
+    </button>
+
+
+    }
+
+
+</div>

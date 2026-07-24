@@ -2,109 +2,93 @@
 
 @for(product of products(); track product.id){
 
-<div class="product-card">
+    <div class="product-card">
 
 
-<a [routerLink]="['/shop',product.id]">
+        <a [routerLink]="['/shop',product.id]">
+
+            <div class="image-box">
+
+            <img 
+            [src]="product.image"
+            [alt]="product.title">
+
+            </div>
+
+            <p class="category">
+            {{product.category}}
+            </p>
+
+            <h3>
+            {{product.title}}
+            </h3>
+
+            <div class="rating">
 
 
-<div class="image-box">
+            @for(star of stars; track star){
 
-<img 
-[src]="product.image"
-[alt]="product.title">
+                <lucide-icon
 
-</div>
+                [img]="Star"
 
+                [class.filled]="star <= filledStars(product)">
 
-<p class="category">
-{{product.category}}
-</p>
+                </lucide-icon>
 
+            }
 
-<h3>
-{{product.title}}
-</h3>
+                <span>
+                {{product.rating.rate}}
+                ({{product.rating.count}})
+                </span>
 
+            </div>
 
-<div class="rating">
+            <p class="price">
+            ${{product.price}}
+            </p>
 
+        </a>
 
-@for(star of stars; track star){
-
-<lucide-icon
-
-[img]="Star"
-
-[class.filled]="star <= filledStars(product)">
-
-</lucide-icon>
-
-}
+        <div class="actions">
 
 
-<span>
-{{product.rating.rate}}
-({{product.rating.count}})
-</span>
+        <button
+        class="favorite-btn"
+        (click)="toggleFavorite(product.id)">
 
 
-</div>
+        <lucide-icon
+
+        [img]="Heart"
+
+        [class.favorite]="isFavorite(product.id)">
+
+        </lucide-icon>
 
 
-
-<p class="price">
-${{product.price}}
-</p>
-
-
-</a>
-
-
-
-<div class="actions">
-
-
-<button
-class="favorite-btn"
-(click)="toggleFavorite(product.id)">
-
-
-<lucide-icon
-
-[img]="Heart"
-
-[class.favorite]="isFavorite(product.id)">
-
-</lucide-icon>
-
-
-</button>
+        </button>
 
 
 
-<button 
-class="cart-btn"
-(click)="favorite(product)">
+        <button 
+        class="cart-btn"
+        (click)="addToCart(product)">
 
 
-<lucide-icon
+        <lucide-icon
 
-[img]="ShoppingCart">
+        [img]="ShoppingCart">
 
-</lucide-icon>
-
-
-Add To Cart
-
-
-</button>
+        </lucide-icon>
+        Add To Cart
+        </button>
 
 
-</div>
+        </div>
 
-
-</div>
+    </div>
 
 }
 
