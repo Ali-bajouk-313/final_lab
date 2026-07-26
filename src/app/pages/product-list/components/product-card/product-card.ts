@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink,Router } from '@angular/router';
 import { LucideAngularModule, Heart, ShoppingCart, Star } from 'lucide-angular';
 import { IProduct } from '../../../../shared/interface/product.interface';
 import { ProductService } from '../../../../shared/services/products-services/products.service';
 import { CartService } from '../../../../shared/services/cart-services/cart-services';
 import { AuthService } from '../../../../core/auth/auth.service';
+import { FavoriteServices } from '../../../../shared/services/favorite-services/favorite-services';
+
 @Component({
   selector: 'app-product-card',
   standalone:true,
@@ -25,14 +27,14 @@ export class ProductCard {
 
   stars = [1,2,3,4,5];
 
-  favoriteProducts = signal<Set<number>>(new Set());
 
 
   constructor(
     private productService: ProductService,
     private auth:AuthService,
     private Cart:CartService,
-    private router:Router
+    private router:Router,
+    private Favorite:FavoriteServices
   ){}
 
 
@@ -66,49 +68,24 @@ export class ProductCard {
 
   }
 
+  toggleFavorite(product:IProduct){
 
+    if(!this.auth.isAuthenticated()){
 
-  toggleFavorite(productId:number){
+      this.router.navigate(['/login']);
 
-    this.favoriteProducts.update(favorites=>{
+      return;
 
-      const updated = new Set(favorites);
-
-
-      if(updated.has(productId)){
-
-        updated.delete(productId);
-
-      }
-      else{
-
-        updated.add(productId);
-
-      }
-
-
-      return updated;
-
-    })
-
+    }
+    this.Favorite.toggleFavorite(product);
+    alert("Product added to favorite")
   }
 
+  isFavorite(id:number){
 
-
-  isFavorite(productId:number){
-
-    return this.favoriteProducts()
-    .has(productId);
-
+    return this.Favorite.isFavorite(id)
   }
 
-
-
-  favorite(product:IProduct){
-
-    this.productService.addToFavorite(product);
-
-  }
 
   addToCart(product:IProduct){
     if(!this.auth.isAuthenticated()){

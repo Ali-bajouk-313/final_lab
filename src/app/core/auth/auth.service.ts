@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable,inject,PLATFORM_ID } from '@angular/core';
+import { Component, Injectable,inject,PLATFORM_ID,signal } from '@angular/core';
 import {Router} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { IUser } from '../../shared/interface/user.interface';
 import { catchError, Observable } from 'rxjs';
-import {signal} from'@angular/core';
 import { tap } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-
+import { IAddress } from '../../shared/interface/user.interface';
 interface ILoginResponse{
   token:string;
   user:IUser
@@ -40,6 +39,7 @@ export class AuthService{
 
   tokenkey='token';
   currentuser=signal<IUser | null>(null) ;
+  
   isLoggedIn = signal(false);
 
   private BaseUrl ='http://localhost:4000/api';
@@ -87,7 +87,9 @@ export class AuthService{
       payload
     );
   }
-  
+  getallUSers():IUser[]{
+    return JSON.parse(localStorage.getItem('users') || '[]');
+  }  
   logout(){
 
   this.cookieservice.delete(this.tokenkey);
@@ -127,13 +129,11 @@ export class AuthService{
     this.users.update(users=>[...users,user]);
     this.save();
     if(isPlatformBrowser(this.platformId)){
-
-    localStorage.setItem(
-      'users',
-      JSON.stringify(this.users())
-    );
-
-  }
+      localStorage.setItem(
+        'users',
+        JSON.stringify(this.users())
+      );
+    }
   }
   removeUser(id:number){
     this.users.update(users=>
@@ -141,7 +141,48 @@ export class AuthService{
     );
     this.save();
   }
+
   private save(){
-    localStorage.setItem('users',JSON.stringify(this.users()));
+    if(isPlatformBrowser(this.platformId)){
+      localStorage.setItem(
+        'users',
+        JSON.stringify(this.users())
+      );
+    }
+  }
+  updateUser(updatedUser: IUser){
+    this.users.update(users =>
+      users.map(user =>
+        user.id === updatedUser.id
+          ? updatedUser
+          : user
+      )
+    );
+    this.currentuser.set(updatedUser);
+    localStorage.setItem(
+      'users',
+      JSON.stringify(this.users())
+    );
+  }
+
+  addAddress(address:IAddress){
+    const user = this.currentuser();
+    if(!user) return;
+    user.addresses.push(address);
+    this.updateUser(user);
+
+  }
+  removeAddress(id:number){
+
+  const user = this.currentuser();
+  if(!user) return;
+    user.addresses =
+    user.addresses.filter(
+      address => address.id !== id
+    );
+  this.updateUser(user);
+  }
+  getAddresses(){
+    return this.currentuser()?.addresses ?? [];
   }
 }

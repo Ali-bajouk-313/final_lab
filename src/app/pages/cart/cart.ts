@@ -4,6 +4,7 @@ import { ProductService } from '../../shared/services/products-services/products
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {LucideAngularModule, Heart, ShoppingCart,Star} from 'lucide-angular';
 import { CartService } from '../../shared/services/cart-services/cart-services';
+
 @Component({
   selector: 'app-cart',
   standalone:true,

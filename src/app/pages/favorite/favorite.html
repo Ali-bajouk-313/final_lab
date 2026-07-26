@@ -1,1 +1,57 @@
-<p>favorite works!</p>
+<div class="favorites-container">
+
+
+<h1>Your favorites</h1>
+
+
+    @if(favorites().length === 0){
+
+        <p>
+            Your favorites is empty.
+        </p>
+
+    }
+    @else {
+
+
+    @for(item of favorites(); track item.id){
+
+    <div class="favorites-item">
+
+    <img 
+    [src]="item.image"
+    [alt]="item.title">
+
+
+    <div>
+        <h3>
+        {{item.title}}
+        </h3>
+        <p>
+        Price: ${{item.price}}
+        </p>
+
+    </div>
+
+
+    <button
+    (click)="remove(item.id)">
+    Remove
+    </button>
+
+
+    </div>
+
+
+    }
+
+    <button
+    (click)="clear()">
+    Clear favorites
+    </button>
+
+
+    }
+
+
+</div>
