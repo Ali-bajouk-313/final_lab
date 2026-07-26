@@ -1,19 +1,19 @@
 
-@if(product){
-<a [routerLink]="['/shop', product.id]">
+@if(product(); as item){
+<a [routerLink]="['/shop', item.id]">
 
     <div class="product-card">
-        <img [src]="product.image">
+        <img [src]="item.image">
 
         <h3>
-            {{product.title}}
+            {{item.title}}
         </h3>
         <p>
-            {{product.description}}
+            {{item.description}}
         </p>
 
         <p>
-            {{product.price}} $
+            {{item.price}} $
         </p>
         
         <!-- <div class="rating">
@@ -30,14 +30,14 @@
 
     
         <div>
-            <button class="favorite-btn" (click)="toggleFavorite()">
+            <button class="favorite-btn" (click)="toggleFavorite(item)">
             <lucide-icon
                 [img]="Heart"
-                [class.favorite]="isFavorite()">
+                [class.favorite]="isFavorite(item.id)">
             </lucide-icon>
         </button>
         </div>
-        <button class="cart-btn">
+        <button class="cart-btn" (click)="addToCart(item)">
             <lucide-icon [img]="ShoppingCart"></lucide-icon>
             Add to Cart
         </button>

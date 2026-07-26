@@ -1,46 +1,116 @@
-<!-- @if(user()) { -->
+<h2>
+My Name
+</h2>
+
 
 <h1>
 Hello {{user?.username}}
 </h1>
 
+
 <p>
 {{user?.email}}
 </p>
 
-<!-- }
-@else {
+
+
+<div class="address-header">
+
+<h2>
+My Address
+</h2>
+
+
+<button
+class="edit-btn"
+(click)="toggleEdit()">
+
+{{isEditing ? 'Save' : 'Edit'}}
+
+</button>
+
+
+</div>
+
+
+
+
+@if(user?.addresses?.length){
+
+
+@for(address of user?.addresses; track address.id){
+
+
+<div class="address-card">
+
+    <form [formGroup]="addressForm">
+
+
+        <label>
+        Street
+        </label>
+
+        <input
+        type="text"
+        formControlName="street">
+
+        <label>
+        City
+        </label>
+
+        <input
+        type="text"
+        formControlName="city">
+
+        <label>
+        Country
+        </label>
+
+        <input
+        type="text"
+        formControlName="country">
+
+        <label>
+        Phone
+        </label>
+
+        <input
+        type="text"
+        formControlName="phone">
+
+        </form>
+
+    <button
+    class="delete-btn"
+    (click)="removeAddress(address.id)">
+
+    Remove Address
+
+    </button>
+
+</div>
+
+
+}
+
+
+}
+@else{
+
 
 <p>
-Loading user...
+No address found
 </p>
 
-} -->
 
-<div>
-    <h1>Profile</h1>
-</div>
 
-<div>
-    <h1>Profile</h1>
-</div>
-<div>
-    <h1>Profile</h1>
-</div>
-<div>
-    <h1>Profile</h1>
-</div>
-<div>
-    <h1>Profile</h1>
-</div>
+<button
+class="edit-btn"
+(click)="addressForm.enable()">
 
-<div>
-    <h1>Profile</h1>
-</div>
+Add Address
 
-<div>
-    <h1>Profile</h1>
-</div>
-<div>
-    <h1>Profile</h1>
-</div>
+</button>
+
+
+}

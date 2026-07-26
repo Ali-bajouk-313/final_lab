@@ -2,23 +2,35 @@ import { Injectable, inject, signal,PLATFORM_ID } from '@angular/core';
 import { ICart } from '../../interface/product.interface';
 import { IProduct } from '../../interface/product.interface';
 import { isPlatformBrowser } from '@angular/common';
+import { AuthService } from '../../../core/auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService{
   cart=signal<ICart[]>([]);
   private platformId = inject(PLATFORM_ID);
-
-  constructor(){
+  constructor(
+    private auth:AuthService
+  ){
     if(isPlatformBrowser(this.platformId)){
-
-    const savedCart=localStorage.getItem('cart');
-
-        if(savedCart){
-        this.cart.set(JSON.parse(savedCart))
+      const key=this.getCartKey();
+      if(key){
+        const savedCart=localStorage.getItem('cart');
+          if(savedCart){
+          this.cart.set(JSON.parse(savedCart))
+          }
         }
-    }
+      }
   }
+  private getCartKey(){
+
+  const user = this.auth.getuser();
+
+  return user 
+    ? `cart_${user.id}`
+    : null;
+
+}
   addToCart(Product:IProduct){
     const exists=this.cart().find(item=>item.id ===Product.id);
     if(exists){
@@ -51,11 +63,14 @@ export class CartService{
 
   private save(){
     if(isPlatformBrowser(this.platformId)){
-            localStorage.setItem(
-                'cart',
-                JSON.stringify(this.cart())
-            );
-        }
+      const key = this.getCartKey();
+      if(key){
+        localStorage.setItem(
+          key,
+          JSON.stringify(this.cart())
+        );
+      }
     }
+  }
 
 }

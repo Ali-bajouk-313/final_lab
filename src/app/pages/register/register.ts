@@ -115,9 +115,24 @@ export class Register {
     this.auth.register(user).subscribe({
     next:(res)=>{
     console.log("register is successful");
-    this.auth.addUser(res.user);
+    const localUSer={
+      ...res.user,
+      addresses: [
+      {
+        id: Date.now(),
+        street: data.street,
+        city: data.city,
+        country: data.country,
+        phone: data.phoneNumber
+      }
+    ],
+    cart: [],
+    favorite: [],
+    orders: []
+    }
+    this.auth.addUser(localUSer);
     this.auth.settoken(res.token);
-    this.auth.setuser(res.user);
+    this.auth.setuser(localUSer);
     console.log("PAYLOAD SENT:", user);
     this.router.navigate(["/"])
   .then(success => {

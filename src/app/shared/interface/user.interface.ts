@@ -1,5 +1,4 @@
 export interface IUser {
-
 id:number;
 
 username:string;
@@ -16,11 +15,8 @@ orders:IOrder[];
 
 cart:ICartItem[];
 
-wishlist:number[];
-
+favorite:number[];
 }
-
-
 
 export interface IAddress {
 

@@ -1,0 +1,228 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    padding: 40px;
+    background: #f8f8f8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #B8975A;
+    margin-bottom: 10px;
+}
+
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 8px;
+}
+
+
+p {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+
+
+.address-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    max-width: 500px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.address-header h2 {
+
+    font-size: 26px;
+
+    color: #B8975A;
+
+    margin: 0;
+
+}
+
+
+.edit-btn,
+.delete-btn {
+
+
+    border: none;
+
+    cursor: pointer;
+
+    border-radius: 10px;
+
+    padding: 12px 25px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
+
+}
+
+
+
+.edit-btn {
+
+    background: #111;
+
+    color: white;
+
+}
+
+
+
+.edit-btn:hover {
+
+    background: #B8975A;
+
+    transform: translateY(-2px);
+
+}
+
+
+
+.delete-btn {
+    margin-top: 25px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #ddd;
+
+}
+
+
+
+.delete-btn:hover {
+
+    background: #B8975A;
+
+    color: white;
+
+}
+
+
+.address-card {
+
+    width: 500px;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+
+    border: 1px solid #eee;
+
+    transition: 0.3s ease;
+
+}
+
+.address-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.12);
+
+}
+
+form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+label {
+
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
+
+}
+input {
+
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border-radius: 12px;
+
+    border: 1px solid #ddd;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s ease;
+
+    background: #f9f9f9;
+
+}
+
+input:disabled {
+    background: #f2f2f2;
+    color: #777;
+    cursor: not-allowed;
+}
+
+input:not(:disabled) {
+
+    background: white;
+    border-color: #111;
+}
+
+input:focus {
+    border-color: black;
+}
+.address-card + p {
+
+    color: #888;
+
+    font-style: italic;
+
+}
+
+
+@media(max-width:650px){
+    :host {
+        padding: 20px;
+    }
+    .address-card,
+    .address-header {
+        width: 100%;
+        max-width: 100%;
+    }
+    h1 {
+        font-size: 28px;
+    }
+
+
+}

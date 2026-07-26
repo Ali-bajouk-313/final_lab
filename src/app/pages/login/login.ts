@@ -64,23 +64,52 @@ export class Login {
       data.password
     ).subscribe({
       next:(response)=>{
-        this.auth.setuser(response.user)
-        this.auth.settoken(response.token);
-        this.auth.addUser(response.user);
-        if(this.auth.isAdmin()){
-          console.log('you are an Admin');
-          this.router.navigate(['/admin']).then(
-            success=>{
-              console.log('Navigation',success);
-            }
-          );
+
+        const savedUser = this.auth.getallUSers()
+          .find(user => user.id === response.user.id);
+        let user;
+        if(savedUser){
+          user = savedUser;
         }
         else{
-          const returnUrl =
-          this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-          this.router.navigateByUrl(returnUrl);
+          user = {
+            ...response.user,
+            addresses:[],
+            cart:[],
+            favorite:[],
+            orders:[]
+          };
+
+          this.auth.addUser(user);
+
         }
-        console.log("User from login", response.user)
+
+
+        this.auth.setuser(user);
+
+        this.auth.settoken(response.token);
+
+
+
+        if(this.auth.isAdmin()){
+
+          console.log('you are an Admin');
+
+          this.router.navigate(['/admin']);
+
+        }
+        else{
+
+          const returnUrl =
+            this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+
+          this.router.navigateByUrl(returnUrl);
+
+        }
+
+
+        console.log("Current user:", user);
+
       },
       error:(err)=>{
       console.log("REGISTER ERROR", err);
