@@ -1,1 +1,14 @@
-<p>users works!</p>
+<p>
+Total users: {{users().length}}
+</p>
+<ag-grid-angular
+
+class="ag-theme-alpine"
+
+[rowData]="users()"
+
+[columnDefs]="columnDefs"
+
+domLayout="autoHeight">
+
+</ag-grid-angular>

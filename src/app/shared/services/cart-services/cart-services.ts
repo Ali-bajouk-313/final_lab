@@ -26,11 +26,9 @@ export class CartService{
 
   const user = this.auth.getuser();
 
-  return user 
-    ? `cart_${user.id}`
-    : null;
+  return user ?`cart_${user.id}`: null;
 
-}
+  }
   addToCart(Product:IProduct){
     const exists=this.cart().find(item=>item.id ===Product.id);
     if(exists){
@@ -71,6 +69,12 @@ export class CartService{
         );
       }
     }
+  }
+  updateCart(cart:any[]){
+    localStorage.setItem(
+        'cart',
+        JSON.stringify(cart)
+    );
   }
 
 }

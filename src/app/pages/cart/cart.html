@@ -1,61 +1,215 @@
-<div class="cart-container">
+<div class="cart-page">
 
 
-<h1>Your Cart</h1>
+    <h1>
+        Shopping Cart 
+        <span>({{carts().length}} items)</span>
+    </h1>
 
 
-    @if(carts().length === 0){
 
-        <p>
-            Your carts is empty.
-        </p>
-
-    }
-    @else {
+    <div class="cart-layout">
 
 
-    @for(item of carts(); track item.id){
 
-    <div class="cart-item">
-
-    <img 
-    [src]="item.image"
-    [alt]="item.title">
+        <div class="cart-table">
 
 
-    <div>
-        <h3>
-        {{item.title}}
-        </h3>
-        <p>
-        Price: ${{item.price}}
-        </p>
+            <div class="cart-header">
 
-        <p>
-        Quantity: {{item.quantity}}
-        </p>
+                <span>PRODUCT</span>
+                <span>PRICE</span>
+                <span>QTY</span>
+                <span>TOTAL</span>
+
+            </div>
+
+
+
+            @for(item of carts(); track item.id){
+
+
+            <div class="cart-row">
+
+
+                <div class="product-info">
+
+
+                    <img 
+                    [src]="item.image"
+                    [alt]="item.title">
+
+
+                    <div>
+
+                        <small>
+                            {{item.category}}
+                        </small>
+
+
+                        <h3>
+                            {{item.title}}
+                        </h3>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="price">
+
+                    ${{item.price}}
+
+                </div>
+
+
+
+
+                <div class="quantity">
+
+
+                    <button
+                    (click)="decreaseQuantity(item)">
+                        -
+                    </button>
+
+
+                    <span>
+                        {{item.quantity}}
+                    </span>
+
+
+                    <button
+                    (click)="increaseQuantity(item)">
+                        +
+                    </button>
+
+
+                </div>
+
+
+
+
+                <div class="total">
+
+
+                    ${{item.price * item.quantity}}
+
+
+                    <button
+                    class="delete"
+                    (click)="remove(item.id)">
+
+                    🗑
+
+                    </button>
+
+
+                </div>
+
+
+
+            </div>
+
+
+            }
+
+
+        </div>
+
+
+
+
+        <div class="summary">
+
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div class="line">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <span>
+                    ${{subtotal()}}
+                </span>
+
+            </div>
+
+
+
+            <div class="line">
+
+                <span>
+                    Shipping
+                </span>
+
+                <span class="free">
+                    Free
+                </span>
+
+            </div>
+
+
+
+            <hr>
+
+
+
+            <div class="total-line">
+
+                <span>
+                    Total
+                </span>
+
+                <span>
+                    ${{subtotal()}}
+                </span>
+
+            </div>
+
+
+
+            <div class="promo">
+
+                <input placeholder="Promo code">
+
+                <button>
+                    Apply
+                </button>
+
+            </div>
+
+
+
+            <button class="checkout" >
+
+                PROCEED TO CHECKOUT
+
+            </button>
+
+
+
+            <button class="continue">
+                <a routerLink="/shop">
+                ‹ Continue Shopping
+                </a>
+            </button>
+
+
+
+        </div>
+
+
 
     </div>
-
-
-    <button
-    (click)="remove(item.id)">
-    Remove
-    </button>
-
-
-    </div>
-
-
-    }
-
-    <button
-    (click)="clear()">
-    Clear Cart
-    </button>
-
-
-    }
 
 
 </div>

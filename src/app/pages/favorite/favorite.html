@@ -1,11 +1,18 @@
 <div class="favorites-container">
 
 
-<h1>Your favorites</h1>
+<div class="click">
+    <h1>Your favorites</h1>
 
-
+    <button
+        (click)="clear()">
+        Clear favorites
+    </button>
+</div>
     @if(favorites().length === 0){
 
+        <p>Lets go Shopping</p>
+        
         <p>
             Your favorites is empty.
         </p>
@@ -32,26 +39,31 @@
         </p>
 
     </div>
-
-
+    <div class="actions">
     <button
-    (click)="remove(item.id)">
-    Remove
+        class="remove-heart"
+        (click)="remove(item.id)">
+        <lucide-icon
+            [img]="Heart"
+            (click)="remove(item.id)">
+        </lucide-icon>
     </button>
-
-
+     <button 
+        class="cart-btn"
+        (click)="addToCart(item)">
+        Add To Cart
+    </button>
     </div>
 
+    
+    </div>
 
     }
 
-    <button
-    (click)="clear()">
-    Clear favorites
-    </button>
 
 
     }
+   
 
 
 </div>

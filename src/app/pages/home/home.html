@@ -20,8 +20,8 @@
 
             <div class="buttons">
 
-                <button class="primary" routerLink="/register">
-                    Shop Now
+                <button class="primary" >
+                    <a routerLink="/shop">Shop Now</a>
                 </button>
 
                 <button class="secondary" routerLink="/About">
@@ -47,7 +47,6 @@
 
 </section>
 
-<!-- Statistics -->
 
 <section class="stats">
 
@@ -65,7 +64,6 @@
 
 </section>
 
-<!-- Categories -->
 
 <section class="container">
 
@@ -79,9 +77,9 @@
 
         </div>
 
-        <button routerLink="/register">
+        <a routerLink="/shop">
             View All
-        </button>
+        </a>
 
     </div>
 
@@ -109,7 +107,6 @@
 
 </section>
 
-<!-- Services -->
 
 <section class="services">
 
@@ -127,7 +124,6 @@
 
 </section>
 
-<!-- Featured Products -->
 
 <section class="container">
 
@@ -141,9 +137,9 @@
 
         </div>
 
-        <button routerlink="/shop">
+        <a routerLink="/shop">
             View All
-        </button>
+        </a>
 
     </div>
 
@@ -151,7 +147,8 @@
 
     <div class="products">
 
-        <app-product-card></app-product-card>
+        <app-product-card
+        [limit]="8"></app-product-card>
 
     </div>
 
@@ -159,7 +156,6 @@
 
 </section>
 
-<!-- Newsletter -->
 
 <section class="newsletter">
 
@@ -181,7 +177,7 @@
                 placeholder="Your email address">
 
             <button>
-                Subscribe
+                <a routerLink="/">Subscribe</a>
             </button>
 
         </form>
@@ -189,3 +185,4 @@
     </div>
 
 </section>
+

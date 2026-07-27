@@ -133,3 +133,208 @@
     opacity: 0.85;
 
 }
+
+@media (max-width: 900px) {
+
+
+    .top-bar {
+
+        flex-wrap: wrap;
+
+        gap:15px;
+
+    }
+
+
+    .title {
+
+        width:100%;
+
+        font-size:28px;
+
+        margin-right:0;
+
+    }
+
+
+    .search-input {
+
+        flex:1;
+
+        width:auto;
+
+        min-width:200px;
+
+    }
+
+
+    .add-btn {
+
+        padding:10px 15px;
+
+    }
+
+
+    .product-form {
+
+        padding:20px;
+
+    }
+
+
+    .ag-theme-alpine {
+
+        width:100%;
+
+        overflow-x:auto;
+
+    }
+
+}
+
+@media (max-width: 600px) {
+
+
+    .top {
+
+        width:100%;
+
+    }
+
+
+
+    .top-bar {
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        margin-bottom:15px;
+
+    }
+
+
+
+    .title {
+
+        font-size:24px;
+
+        text-align:left;
+
+    }
+
+
+
+    .search-input {
+
+        width:100%;
+
+        box-sizing:border-box;
+
+    }
+
+
+
+    .add-btn {
+
+        width:100%;
+
+        font-size:14px;
+
+    }
+
+    .product-form {
+
+        padding:15px;
+
+        margin:10px 0;
+
+        border-radius:10px;
+
+    }
+
+
+
+    .product-form h2 {
+
+        font-size:20px;
+
+    }
+
+
+
+    .product-form input,
+    .product-form textarea {
+
+        font-size:14px;
+
+        padding:10px;
+
+    }
+
+
+
+    .form-buttons {
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+
+
+    .product-form button {
+
+        width:100%;
+
+        margin:0;
+
+    }
+
+    .ag-theme-alpine {
+
+        height:500px;
+
+        font-size:13px;
+
+    }
+
+}
+
+
+
+@media (max-width:400px) {
+
+
+    .title {
+
+        font-size:22px;
+
+    }
+
+
+    .product-form {
+
+        padding:12px;
+
+    }
+
+
+    .product-form input,
+    .product-form textarea {
+
+        font-size:13px;
+
+    }
+
+
+    .add-btn {
+
+        padding:10px;
+
+    }
+
+}
