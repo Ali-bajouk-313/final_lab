@@ -38,21 +38,16 @@ export class FavoriteServices{
         const exists = this.favorite()
         .some(item => item.id === product.id);
 
-
         if(exists){
-
         this.favorite.update(items =>
             items.filter(item => item.id !== product.id)
         );
-
         }
         else{
-
         this.favorite.update(items => [
             ...items,
             product
         ]);
-
         }
         this.save();
 

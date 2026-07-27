@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal,Input } from '@angular/core';
 import { RouterLink,Router } from '@angular/router';
 import { LucideAngularModule, Heart, ShoppingCart, Star } from 'lucide-angular';
 import { IProduct } from '../../../../shared/interface/product.interface';
@@ -19,8 +19,10 @@ import { FavoriteServices } from '../../../../shared/services/favorite-services/
 })
 export class ProductCard {
 
-  products = signal<IProduct[]>([]);  product!: IProduct;
-
+  products = signal<IProduct[]>([]);  
+  product!: IProduct;
+  @Input() limit:number | null=null;
+  @Input() productList:IProduct[] = [];
   Heart = Heart;
   ShoppingCart = ShoppingCart;
   Star = Star;
@@ -46,7 +48,13 @@ export class ProductCard {
 
       next:(data:IProduct[])=>{
 
-        this.products.set(data);
+        if(this.limit){
+          this.products.set(data.slice(0,this.limit))
+        }
+        else{
+          this.products.set(data)
+        }
+
         console.log("Products:",data);
       },
 
@@ -78,7 +86,7 @@ export class ProductCard {
 
     }
     this.Favorite.toggleFavorite(product);
-    alert("Product added to favorite")
+
   }
 
   isFavorite(id:number){
@@ -94,7 +102,6 @@ export class ProductCard {
     }
     this.Cart.addToCart(product);
     console.log('product added');
-    alert('product added')
   }
 
 }

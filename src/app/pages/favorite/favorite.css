@@ -1,0 +1,391 @@
+.favorites-container {
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    justify-content:center;
+
+    width:100%;
+
+    padding:30px;
+
+}
+
+.click {
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+    padding:0 20px;
+
+}
+
+
+.click h1 {
+
+    margin:0;
+
+    font-size:32px;
+
+    font-weight:600;
+
+}
+
+
+.click button {
+
+    background:white;
+
+    border:1px solid black;
+
+    padding:12px 25px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.click button:hover {
+
+    background:black;
+
+    color:white;
+
+}
+
+.favorites-container h1 {
+    text-align:left;
+}
+
+.remove-heart {
+
+    background:white;
+    color:red;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+
+}
+
+
+.remove-heart lucide-icon {
+
+    color:red;
+
+    fill:red;
+
+}
+
+
+.remove-heart:hover {
+
+    transform:scale(1.1);
+
+}
+
+.favorites-container > p {
+
+    width:100%;
+
+    text-align:center;
+
+    font-size:18px;
+
+    color:#777;
+
+}
+
+
+
+
+.favorites-item {
+
+    flex:1 1 280px;
+
+    max-width:350px;
+
+    min-width:250px;
+
+    background:white;
+
+    border:1px solid #e5e5e5;
+
+    transition:.3s;
+
+    overflow:hidden;
+
+}
+
+
+
+.favorites-item:hover {
+
+    transform:translateY(-5px);
+
+}
+
+
+
+
+.favorites-item img {
+
+    width:100%;
+
+    aspect-ratio:1 / 1;
+
+    background:#f5f4f1;
+
+    object-fit:contain;
+
+    padding:25px;
+
+}
+
+
+
+
+.favorites-item div {
+
+    padding:15px;
+
+}
+
+
+
+.favorites-item h3 {
+
+    font-size:15px;
+
+    font-weight:600;
+
+    height:45px;
+
+    overflow:hidden;
+
+    margin:0;
+
+}
+
+
+
+
+.favorites-item p {
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#b8862f;
+
+}
+
+
+
+
+.cart-btn {
+
+    margin:0 15px 15px;
+
+    width:calc(100% - 30px);
+
+    height:40px;
+
+    background:white;
+
+    border:1px solid black;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:.3s;
+
+}
+
+
+
+.cart-btn:hover {
+
+    background:black;
+
+    color:white;
+
+}
+
+
+
+
+/* .favorites-item button:not(.cart-btn) {
+
+    margin:0 15px 15px;
+
+    width:calc(100% - 30px);
+
+    height:40px;
+
+    background:white;
+
+    border:1px solid #ddd;
+
+    cursor:pointer;
+
+} */
+
+
+
+.favorites-item button:not(.cart-btn):hover {
+
+    border-color:black;
+
+}
+
+
+
+
+.favorites-container > button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:200px;
+
+    height:45px;
+
+    background:black;
+
+    color:white;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+
+
+.favorites-container > button:hover {
+
+    opacity:.8;
+
+}
+
+.actions {
+
+    display:flex;
+
+    gap:10px;
+
+    padding:15px;
+
+}
+
+
+
+.cart-btn {
+
+    flex:1;
+
+    margin:0;
+
+    width:auto;
+
+}
+
+
+
+.remove-heart {
+
+    width:45px;
+
+    height:40px;
+
+    border:1px solid #ddd;
+
+    background:white;
+
+    color:red;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+.remove-heart lucide-icon {
+
+    width:22px;
+
+    height:22px;
+
+    color:red;
+
+    fill:red;
+
+}
+
+
+
+.remove-heart:hover {
+
+    transform:scale(1.1);
+
+}
+
+
+@media(max-width:900px){
+
+    .favorites-item{
+
+        flex:1 1 220px;
+
+    }
+
+}
+
+
+
+@media(max-width:600px){
+
+    .favorites-container{
+
+        padding:15px;
+
+    }
+
+
+    .favorites-item{
+
+        flex:1 1 100%;
+
+        max-width:100%;
+
+    }
+
+}

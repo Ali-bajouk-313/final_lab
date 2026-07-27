@@ -51,30 +51,31 @@ export class ProductService {
   getFavorites() {
     return this.favoriteProducts;
   }
+  
   loadProducts(){
 
-  if(this.products().length > 0){
-    return;
+    if(this.products().length > 0){
+      return;
+    }
+
+    this.http.get<IProduct[]>(this.api)
+      .subscribe({
+
+        next:(products)=>{
+
+          this.products.set(products);
+
+        },
+
+        error:(err)=>{
+
+          console.log(err);
+
+        }
+
+      });
+
   }
-
-  this.http.get<IProduct[]>(this.api)
-    .subscribe({
-
-      next:(products)=>{
-
-        this.products.set(products);
-
-      },
-
-      error:(err)=>{
-
-        console.log(err);
-
-      }
-
-    });
-
-}
   addProduct(product:IProduct):Observable<IProduct>{
     return this.http.post<IProduct>(this.api,product);
   }
@@ -83,6 +84,10 @@ export class ProductService {
   } 
   deleteProduct(id:number):Observable<IProduct>{
     return this.http.delete<IProduct>(`${this.api}/${id}`);
-  } 
+  }
+
+  setProducts(products:IProduct[]){
+    this.products.set(products);
+  }
   
 }

@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject,signal } from '@angular/core';
 import { Router,RouterLink,RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { ProductCard } from '../../pages/product-list/components/product-card/product-card';
 import { ProductService } from '../../shared/services/products-services/products.service';
-
+import { IProduct } from '../../shared/interface/product.interface';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -20,7 +20,7 @@ export class Home {
 
   products = this.productService.products;
 
-  featured = computed(() => this.products().slice(0, 8));
+  featured =signal<IProduct[]>([]);
 
 
  
@@ -77,5 +77,23 @@ export class Home {
   navigate(url: string) {
     this.router.navigate([url]);
   }
+  ngOnInit(){
 
+    this.productService.getProducts()
+    .subscribe({
+
+      next:(products)=>{
+
+        this.featured.set(products.slice(0,10));
+
+      },
+
+      error:(err)=>{
+
+        console.log(err);
+
+      }
+
+    });
+  }
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductCard } from './components/product-card/product-card';
+import { IProduct } from '../../shared/interface/product.interface';
+import { ProductService } from '../../shared/services/products-services/products.service';
 
 
 @Component({
@@ -15,17 +17,11 @@ import { ProductCard } from './components/product-card/product-card';
 })
 export class Products {
 
-
   search = '';
-
   selectedCategory = 'All Products';
-
   sortBy = 'Default';
-
   minPrice = 7;
-
   maxPrice = 1000;
-
 
   categories = [
     {
@@ -53,9 +49,6 @@ export class Products {
       count:6
     }
   ];
-
-
-
   ratings = [
     {
       label:'All ratings',
@@ -75,6 +68,29 @@ export class Products {
     },
   ];
 
+  products:IProduct[]=[];
+
+  filteredProducts:IProduct[]=[];
+
+  constructor (
+    private productServices:ProductService
+  ){
+
+  }
+
+  ngOnInit(){
+    this.productServices.getProducts()
+    .subscribe({
+      next:(data)=>{
+        this.products=data;
+        this.filteredProducts=data;
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    });
+  }
+  
 
 
 }

@@ -77,394 +77,301 @@ loadProducts(){
 
 
 search(event:Event){
+  const value =
+  (event.target as HTMLInputElement)
+  .value.toLowerCase();
 
-
-const value =
-(event.target as HTMLInputElement)
-.value
-.toLowerCase();
-
-
-
-this.productService
-.getProducts()
-.subscribe(products=>{
-
-
-this.products.set(
-
-products.filter(product=>
-
-product.title
-.toLowerCase()
-.includes(value)
-
-)
-
-);
-
-
-});
-
-
+  this.productService.getProducts()
+  .subscribe(products=>{
+    this.products.set(
+    products.filter(product=>
+    product.title
+    .toLowerCase()
+    .includes(value)));
+  });
 }
 
 
 
 
-addProduct(){
+  addProduct(){
+    this.selectedProduct.set({
+      id:Date.now(),
+      title:'',
+      price:0,
+      description:'',
+      category:'',
+      image:'',
+      rating:{
+      rate:0,
+      count:0
+      }
+    });
+    this.showForm.set(true);
+  }
 
+  editProduct(product:IProduct){
+    this.selectedProduct.set({
+      ...product
+    });
 
-this.selectedProduct.set({
+    this.showForm.set(true);
+  }
 
-id:Date.now(),
 
-title:'',
 
-price:0,
 
-description:'',
+  deleteProduct(product:IProduct){
 
-category:'',
+      this.products.update(products=>
+      products.filter(p=>
+      p.id !== product.id
+      )
+    );
+  }
 
-image:'',
+  closeForm(){
 
-rating:{
- rate:0,
- count:0
-}
+   this.showForm.set(false);
 
-});
+  }
 
 
-this.showForm.set(true);
 
 
-}
+  saveProduct(){
+    const product = this.selectedProduct();
+    const exists = this.products()
+    .some(p=>
+    p.id === product.id
+    );
+    if(exists){
 
 
+    this.products.update(products=>
 
+    products.map(p=>
 
-editProduct(product:IProduct){
+    p.id === product.id
 
+    ? product
 
-this.selectedProduct.set({
+    : p
 
-...product
+    )
 
-});
+    );
 
 
-this.showForm.set(true);
 
+    }
+    else{
+    this.products.update(products=>[
+    ...products,
+    product
+    ]);
+    }
+    this.showForm.set(false);
+  }
 
-}
 
 
 
+  columnDefs:ColDef[]=[
+    {
 
-deleteProduct(product:IProduct){
+    headerName:'Image',
 
+    field:'image',
 
-this.products.update(products=>
+    width:100,
 
-products.filter(p=>
 
-p.id !== product.id
+    cellRenderer:(params:any)=>{
 
-)
 
-);
+    return `
 
+    <img
 
-}
+    src="${params.value}"
 
+    width="50"
 
+    height="50"
 
+    style="object-fit:contain"
 
-closeForm(){
+    />
 
-this.showForm.set(false);
+    `;
 
-}
 
+    }
 
+    },
 
+    {
 
-saveProduct(){
 
+    headerName:'Product',
 
-const product = this.selectedProduct();
+    field:'title',
 
+    flex:2,
 
+    sortable:true,
 
-const exists = this.products()
-.some(p=>
+    filter:true
 
-p.id === product.id
 
-);
+    },
 
+    {
 
 
-if(exists){
+    headerName:'Price',
 
+    field:'price',
 
-this.products.update(products=>
+    sortable:true,
 
-products.map(p=>
 
-p.id === product.id
+    valueFormatter:(params)=>{
 
-? product
 
-: p
+    return `$${params.value}`;
 
-)
 
-);
+    }
 
+    },
 
+    {
 
-}
-else{
 
+    headerName:'Category',
 
-this.products.update(products=>[
+    field:'category',
 
-...products,
+    filter:true
 
-product
 
-]);
+    },
 
+    {
 
-}
 
+    headerName:'Rating',
 
 
-this.showForm.set(false);
+    valueGetter:(params)=>{
 
 
-}
+    return params.data.rating.rate;
 
 
+    },
 
 
-columnDefs:ColDef[]=[
+    cellRenderer:(params:any)=>{
 
 
-{
+      const rating = Math.round(params.value);
 
-headerName:'Image',
+      const stars = '⭐'.repeat(rating);
 
-field:'image',
+      return stars;
 
-width:100,
+    }
 
+    },
 
-cellRenderer:(params:any)=>{
+    {
 
 
-return `
+    headerName:'Reviews',
 
-<img
 
-src="${params.value}"
+    valueGetter:(params)=>{
 
-width="50"
 
-height="50"
+    return params.data.rating.count;
 
-style="object-fit:contain"
 
-/>
+    }
 
-`;
 
+    },
 
-}
+    {
 
-},
 
+    headerName:'Actions',
 
 
-{
 
+    cellRenderer:(params:any)=>{
 
-headerName:'Product',
 
-field:'title',
+    const container =
+    document.createElement('div');
 
-flex:2,
 
-sortable:true,
+    container.style.display='flex';
 
-filter:true
+    container.style.gap='8px';
 
 
-},
 
+    const edit =
+    document.createElement('button');
 
 
-{
+    edit.innerHTML =
+    `✏️`;
 
 
-headerName:'Price',
+    edit.onclick=()=>{
 
-field:'price',
+    this.editProduct(params.data);
 
-sortable:true,
+    };
 
 
-valueFormatter:(params)=>{
 
 
-return `$${params.value}`;
+    const del =
+    document.createElement('button');
 
 
-}
+    del.innerHTML =
+    `🗑️`;
 
-},
 
+    del.onclick=()=>{
 
 
-{
+    this.deleteProduct(params.data);
 
 
-headerName:'Category',
+    };
 
-field:'category',
 
-filter:true
 
+    container.appendChild(edit);
 
-},
+    container.appendChild(del);
 
 
 
-{
+    return container;
 
 
-headerName:'Rating',
+    }
 
 
-valueGetter:(params)=>{
-
-
-return params.data.rating.rate;
-
-
-},
-
-
-cellRenderer:(params:any)=>{
-
-
-  const rating = Math.round(params.value);
-
-  const stars = '⭐'.repeat(rating);
-
-  return stars;
-
-}
-
-},
-
-
-
-{
-
-
-headerName:'Reviews',
-
-
-valueGetter:(params)=>{
-
-
-return params.data.rating.count;
-
-
-}
-
-
-},
-
-
-
-{
-
-
-headerName:'Actions',
-
-
-
-cellRenderer:(params:any)=>{
-
-
-const container =
-document.createElement('div');
-
-
-container.style.display='flex';
-
-container.style.gap='8px';
-
-
-
-const edit =
-document.createElement('button');
-
-
-edit.innerHTML =
-`✏️`;
-
-
-edit.onclick=()=>{
-
-this.editProduct(params.data);
-
-};
-
-
-
-
-const del =
-document.createElement('button');
-
-
-del.innerHTML =
-`🗑️`;
-
-
-del.onclick=()=>{
-
-
-this.deleteProduct(params.data);
-
-
-};
-
-
-
-container.appendChild(edit);
-
-container.appendChild(del);
-
-
-
-return container;
-
-
-}
-
-
-}
-
-
-
-];
-
-
+    }
+  ];
 
 }

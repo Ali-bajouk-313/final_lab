@@ -1,6 +1,5 @@
 <nav class="navbar">
 
-
     <div class="logo">
         <a routerLink="/">
             <button 
@@ -13,7 +12,6 @@
 
     <ul class="nav-links">
 
-
         <li>
             <a routerLink="/">
                 Home
@@ -23,23 +21,23 @@
 
         <li class="shop-menu">
 
-    <a routerLink="/shop">
-        Shop
-    </a>
+                <a routerLink="/shop">
+                    Shop
+                </a>
 
 
-    <div class="dropdown">
+                <div class="dropdown">
 
-        @for(category of categories; track category)
-        {
-            <a [routerLink]="['/shop']" [queryParams]="{category: category}">
-                {{category}}
-            </a>
-        }
+                    @for(category of categories; track category)
+                    {
+                        <a [routerLink]="['/shop']" [queryParams]="{category: category}">
+                            {{category}}
+                        </a>
+                    }
 
-    </div>
+                </div>
 
-</li>
+        </li>
 
 
         <li>
