@@ -86,10 +86,7 @@ export class AuthService{
       `${this.BaseUrl}/auth/register`,
       payload
     );
-  }
-  getallUSers():IUser[]{
-    return JSON.parse(localStorage.getItem('users') || '[]');
-  }  
+  } 
   logout(){
 
   this.cookieservice.delete(this.tokenkey);
@@ -117,6 +114,14 @@ export class AuthService{
       })
     );
   }
+
+  //  updateProfile(payload:{username:string;email:string}){
+  //   return this.http.patch<IUser>(
+  //     `${this.BaseUrl}/user`,
+  //     payload
+  //   );
+  // }
+  
   isAdmin(): boolean {
     const user = this.currentuser();
     return user?.role === "admin";
@@ -158,11 +163,11 @@ export class AuthService{
           : user
       )
     );
-    this.currentuser.set(updatedUser);
-    localStorage.setItem(
-      'users',
-      JSON.stringify(this.users())
-    );
+    const current=this.currentuser();
+    if(current?.id === updatedUser.id){
+      this.currentuser.set(updatedUser)
+    }
+    this.save()
   }
 
   addAddress(address:IAddress){
@@ -185,4 +190,8 @@ export class AuthService{
   getAddresses(){
     return this.currentuser()?.addresses ?? [];
   }
+
+ getallUSers():IUser[]{
+    return JSON.parse(localStorage.getItem('users') || '[]');
+  } 
 }

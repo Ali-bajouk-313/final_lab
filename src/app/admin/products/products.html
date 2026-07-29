@@ -135,17 +135,14 @@ class="add-btn"
 
 
 
-<ag-grid-angular
-
-class="ag-theme-alpine"
-
-[rowData]="products()"
-
-[columnDefs]="columnDefs"
-
-domLayout="autoHeight">
-
-</ag-grid-angular>
+<div class="grid-container">
+    <ag-grid-angular
+    class="ag-theme-alpine"
+    [rowData]="products()"
+    [columnDefs]="columnDefs"
+    domLayout="autoHeight">
+    </ag-grid-angular>
+</div>
 
 
 

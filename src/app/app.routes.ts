@@ -4,7 +4,10 @@ import { AuthLayout } from './core/layout/auth-layout/auth-layout';
 import { MainLayout } from './core/layout/main-layout/main-layout';
 import { authGuard } from './core/auth/auth.guard';
 export const routes: Routes = [
-    
+    {
+        path:'error/:code',
+        loadComponent:()=> import('./pages/error/error').then(m=>m.Error)
+    },
     {
         path:'',
         component:MainLayout,
@@ -39,6 +42,11 @@ export const routes: Routes = [
                 path:"cart",
                 canActivate:[authGuard],
                 loadComponent:()=>import('./pages/cart/cart').then(m=>m.Cart)
+            },
+            {
+                path:"checkout",
+                canActivate:[authGuard],
+                loadComponent:()=>import('./pages/checkout/checkout').then(m=>m.Checkout)
             },
         ]
     },
@@ -91,6 +99,10 @@ export const routes: Routes = [
                 import('./admin/cart/cart').then(m => m.Cart)
             }
         ]
+    },
+    {
+        path:'**',
+        redirectTo:'error/404'
     }
 ];
 // use AG grid
@@ -106,3 +118,12 @@ export const routes: Routes = [
 // validators
 // ng models replacements
 //Rxjs to store data
+// checkout page
+// filter
+// user update using swagger api
+//admin user add edit add updaet
+//stock
+// make authentication in interceptors
+// add hover for buttons in shop
+//  make css for details page
+// make the filters

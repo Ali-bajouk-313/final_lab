@@ -30,22 +30,45 @@ export class CartService{
 
   }
   addToCart(Product:IProduct){
-    const exists=this.cart().find(item=>item.id ===Product.id);
+
+  this.cart.update(items => {
+
+    const exists = items.find(
+      item => item.id === Product.id
+    );
+
+
     if(exists){
-      exists.quantity++;
-      this.cart.set([
-        ...this.cart()
-      ]);
-    }
-    else{
-      this.cart.update(items=>[
-        ...items,{
-          ...Product,
-          quantity:1
+
+      return items.map(item =>
+        item.id === Product.id
+        ?
+        {
+          ...item,
+          quantity:item.quantity + 1
         }
-      ]);
+        :
+        item
+      );
+
     }
+
+
+    return [
+      ...items,
+      {
+        ...Product,
+        quantity:1
+      }
+    ];
+
+  });
+
+
+  setTimeout(()=>{
     this.save();
+  });
+
   }
   removeFromCart(id:number){
     this.cart.update(items =>
@@ -55,10 +78,15 @@ export class CartService{
   }
 
   clearCart(){
+    console.log('clearCart called');
+    console.trace();
+
     this.cart.set([]);
     this.save();
   }
-
+  getCart(){
+    return this.cart;
+  }
   private save(){
     if(isPlatformBrowser(this.platformId)){
       const key = this.getCartKey();

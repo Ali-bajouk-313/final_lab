@@ -37,11 +37,13 @@
                 }
 
             </div>
-
+            @if (errormessage) {
+                <p style="color:red" class="login-error">
+                    {{ errormessage }}
+                </p>
+            }
             <button class="auth-button" type="submit">Login</button>
-
         </form>
-
         
 
         <div class="auth-link">

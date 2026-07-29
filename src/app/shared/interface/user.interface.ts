@@ -37,29 +37,17 @@ phone:string;
 export interface IOrder {
 
 id:number;
-
 date:string;
-
 items:ICartItem[];
-
 total:number;
-
 status:string;
 
 }
 
-
-
 export interface ICartItem {
-
 productId:number;
-
 title:string;
-
 image:string;
-
 price:number;
-
 quantity:number;
-
 }

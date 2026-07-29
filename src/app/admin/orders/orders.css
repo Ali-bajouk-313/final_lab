@@ -1,0 +1,254 @@
+.orders-container {
+    padding: 30px;
+    background: #f8f8f8;
+    min-height: 100%;
+}
+
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #111;
+}
+
+
+
+/* User section */
+
+.user-orders {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,0.08);
+
+}
+
+
+
+.user-orders h2 {
+
+    margin:0;
+
+    font-size:24px;
+
+    color:#111;
+
+}
+
+
+
+.user-orders > p {
+
+    color:#666;
+
+    margin-top:8px;
+
+}
+
+
+
+/* Order card */
+
+.order-card {
+
+    background:#fafafa;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-top:20px;
+
+    border:1px solid #eee;
+
+}
+
+
+
+.order-card h3 {
+
+    font-size:20px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.order-card p {
+
+    margin:8px 0;
+
+    color:#555;
+
+}
+
+
+
+/* Status */
+
+.order-card p:nth-of-type(2){
+
+    display:inline-block;
+
+    background:#fff3cd;
+
+    color:#856404;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+
+/* Products title */
+
+.order-card h4 {
+
+    margin-top:25px;
+
+    margin-bottom:15px;
+
+    font-size:18px;
+
+}
+
+
+
+/* Product item */
+
+.product {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    margin-bottom:10px;
+
+    border:1px solid #eee;
+
+}
+
+
+
+.product img {
+
+    width:60px;
+
+    height:60px;
+
+    object-fit:contain;
+
+    border-radius:8px;
+
+    background:#f5f5f5;
+
+}
+
+
+
+.product span {
+
+    font-size:14px;
+
+    color:#333;
+
+}
+
+
+
+.product span:first-of-type {
+
+    flex:1;
+
+    font-weight:600;
+
+}
+
+
+
+/* Shipping address */
+
+.address {
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    border:1px solid #eee;
+
+}
+
+
+
+.address p {
+
+    margin:10px 0;
+
+    color:#555;
+
+}
+
+
+
+/* Divider */
+
+hr {
+
+    border:none;
+
+    height:1px;
+
+    background:#ddd;
+
+    margin:25px 0;
+
+}
+
+
+
+/* Responsive */
+
+@media(max-width:800px){
+
+    .product {
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    .user-orders,
+    .order-card {
+
+        padding:15px;
+
+    }
+
+}

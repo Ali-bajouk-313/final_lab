@@ -1,1 +1,55 @@
-<p>cart works!</p>
+<h1>
+User Carts
+</h1>
+
+
+@for(user of userscart; track user.id){
+
+
+<h2>
+{{user.username}} /Cart
+</h2>
+
+
+@if(user.cart?.length){
+
+
+@for(item of user.cart; track item.id){
+
+
+<div>
+
+<img 
+[src]="item.image"
+width="50">
+
+
+{{item.title}}
+
+-
+${{item.price}}
+
+Qty:
+{{item.quantity}}
+
+
+</div>
+
+
+}
+
+
+}
+@else{
+
+<p>
+No products
+</p>
+
+}
+
+
+<hr>
+
+
+}

@@ -180,21 +180,19 @@
             <div class="promo">
 
                 <input placeholder="Promo code">
-
                 <button>
                     Apply
                 </button>
-
             </div>
 
-
-
-            <button class="checkout" >
-
+            <button class="checkout" (click)="checkout()">
                 PROCEED TO CHECKOUT
-
             </button>
-
+             @if (errormessage) {
+                <p style="color:red" class="login-error">
+                    {{ errormessage }}
+                </p>
+            }
 
 
             <button class="continue">

@@ -17,7 +17,9 @@ import { FormBuilder,FormGroup, Validator, ReactiveFormsModule, Validators } fro
 export class Register {
 
   registerForm!: FormGroup;
-
+  errormessage='';
+  passworderror='';
+  emailerrormessage='';
   constructor(
     private fb: FormBuilder,
     private auth:AuthService,
@@ -85,7 +87,7 @@ export class Register {
 
       this.registerForm.markAllAsTouched();
 
-      alert("Please fill all required fields.");
+      this.errormessage="Please fill all required fields.";
 
       return;
 
@@ -96,7 +98,7 @@ export class Register {
 
     if(data.password !== data.confirmPassword){
 
-      alert("Passwords don't match.");
+      this.passworderror="Passwords don't match.";
 
       return;
 
@@ -145,40 +147,35 @@ export class Register {
 },
 error: (err) => {
 
-  // if (err.status === 409) {
+  if (err.status === 409) {
 
-  //   switch (err.error?.message) {
+    switch (err.error?.message) {
 
-  //     case 'Email Taken':
-  //       alert('This email is already registered.');
-  //       break;
+      case 'Email Taken':
+        this.emailerrormessage='This email is already registered.';
+        break;
 
-  //     case 'Username Taken':
-  //       alert('This username is already taken.');
-  //       break;
+      case 'Username Taken':
+        this.errormessage='This username is already taken.';
+        break;
 
-  //     default:
-  //       alert(err.error?.message || 'Conflict occurred.');
-  //   }
+      default:
+        this.errormessage=err.error?.message || 'Conflict occurred.';
+    }
 
-  //   return;
-  // }
+    return;
+  }
 
-  // if (err.status === 400) {
-  //   alert(err.error?.errors?.join('\n'));
-  //   return;
-  // }
+  if (err.status === 400) {
+    this.errormessage=err.error?.errors?.join('\n');
+    return;
+  }
 
-  // alert('Something went wrong. Please try again.');
-    console.log("FULL ERROR:", err);
-    console.log("STATUS:", err.status);
-    console.log("BODY:", err.error);
+    this.errormessage='Something went wrong. Please try again.';
+    
 
-    alert(
-      err.error?.message ||
-      `Error ${err.status}`
-    );
-}
-});
+    this.errormessage=err.error?.message ||`Error ${err.status}`
+    }
+    });
   }
 }

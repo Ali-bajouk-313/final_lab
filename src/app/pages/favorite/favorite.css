@@ -44,9 +44,8 @@
 
 .click button {
 
-    background:white;
-
-    border:1px solid black;
+    background:black;
+    color: white;
 
     padding:12px 25px;
 
@@ -59,7 +58,7 @@
 
 .click button:hover {
 
-    background:black;
+    background:#b8862f;
 
     color:white;
 
@@ -203,9 +202,9 @@
 
     height:40px;
 
-    background:white;
+    background:black;
+    color:white;
 
-    border:1px solid black;
 
     cursor:pointer;
 
@@ -223,31 +222,11 @@
 
 .cart-btn:hover {
 
-    background:black;
+    background:#b8862f;
 
     color:white;
 
 }
-
-
-
-
-/* .favorites-item button:not(.cart-btn) {
-
-    margin:0 15px 15px;
-
-    width:calc(100% - 30px);
-
-    height:40px;
-
-    background:white;
-
-    border:1px solid #ddd;
-
-    cursor:pointer;
-
-} */
-
 
 
 .favorites-item button:not(.cart-btn):hover {
