@@ -16,6 +16,7 @@ import {Router} from '@angular/router'
 })
 export class Navbar {
   Search = Search;
+  menuOpen = false;
   Heart = Heart;
   ShoppingCart = ShoppingCart;
   User = User;

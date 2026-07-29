@@ -1,1 +1,164 @@
-<p>orders works!</p>
+<h1>
+    Orders
+</h1>
+
+
+@for(user of usersWithOrders; track user.id){
+
+<div class="user-orders">
+
+    <h2>
+        {{user.username}}
+    </h2>
+
+    <p>
+        {{user.email}}
+    </p>
+
+
+    <hr>
+
+
+    @for(order of user.orders; track order.id){
+
+    <div class="order-card">
+
+
+        <h3>
+            Order #{{order.id}}
+        </h3>
+
+
+        <p>
+            Date:
+            {{order.date }}
+        </p>
+
+
+        <p>
+            Status:
+            {{order.status}}
+        </p>
+
+
+        <p>
+            Total:
+            ${{order.total}}
+        </p>
+
+
+
+        <h4>
+            Products
+        </h4>
+
+
+
+        @for(item of order.items; track item.productId){
+
+        <div class="product">
+
+
+            <img
+            [src]="item.image"
+            width="50"
+            height="50">
+
+
+            <span>
+                {{item.title}}
+            </span>
+
+
+            <span>
+                Quantity:
+                {{item.quantity}}
+            </span>
+
+
+            <span>
+                Price:
+                ${{item.price}}
+            </span>
+
+
+        </div>
+
+        }
+
+
+        <hr>
+
+
+        @if(order.shipping){
+
+        <h4>
+            Shipping Address
+        </h4>
+
+
+        <div class="address">
+
+
+            <p>
+                Name:
+                {{order.shipping.username}}
+            </p>
+
+
+            <p>
+                Email:
+                {{order.shipping.email}}
+            </p>
+
+
+            <p>
+                Street:
+                {{order.shipping.address}}
+            </p>
+
+
+            <p>
+                City:
+                {{order.shipping.city}}
+            </p>
+
+
+            <p>
+                State:
+                {{order.shipping.state}}
+            </p>
+
+
+            <p>
+                ZIP:
+                {{order.shipping.zip}}
+            </p>
+
+
+            <p>
+                Country:
+                {{order.shipping.country}}
+            </p>
+
+
+            <p>
+                Phone:
+                {{order.shipping.phone}}
+            </p>
+
+
+        </div>
+
+        }
+
+
+    </div>
+
+
+    }
+
+</div>
+
+
+}

@@ -27,6 +27,7 @@ export class Cart  {
   Star = Star;
   carts = this.cart.cart;
   stars = [1,2,3,4,5];
+  errormessage=''
   constructor(
   ) {}
   
@@ -65,13 +66,10 @@ export class Cart  {
 
     return this.favoriteService.isFavorite(id)
   }
-
   increaseQuantity(item:any){
     item.quantity++;
     this.cart.updateCart(this.carts());
   }
-
-
   decreaseQuantity(item:any){
     if(item.quantity > 1){
         item.quantity--;
@@ -87,4 +85,34 @@ export class Cart  {
         0
     );
   }
+  checkout(){
+    const user=this.auth.getuser();
+    if(!user){
+      this.router.navigate(['/login']);
+      return;
+    }
+    if(this.carts().length===0){
+      this.errormessage="Your Cart is empty"
+    }
+    const order={
+      id:Date.now(),
+      date:new Date().toISOString(),
+      items: this.carts().map(item => ({
+        productId: item.id,
+        title: item.title,
+        image: item.image,
+        price: item.price,
+        quantity: item.quantity
+      })),
+      total:this.subtotal(),
+      status:'pending'
+    }
+    if(!user.orders){
+      user.orders=[];
+    }
+    user.orders.push(order);
+    this.auth.updateUser(user);
+    this.router.navigate(['/checkout']);
+  }
+
 }

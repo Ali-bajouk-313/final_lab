@@ -1,348 +1,222 @@
 .cart-page {
-
-    padding:40px;
-
+  padding: 40px;
 }
-
 
 .cart-page h1 {
+  font-size: 32px;
 
-    font-size:32px;
-
-    margin-bottom:40px;
-
+  margin-bottom: 40px;
 }
-
 
 .cart-page h1 span {
+  font-size: 18px;
 
-    font-size:18px;
+  color: #777;
 
-    color:#777;
-
-    font-weight:normal;
-
+  font-weight: normal;
 }
-
-
-
 
 .cart-layout {
+  display: grid;
 
-    display:grid;
+  grid-template-columns: 2fr 1fr;
 
-    grid-template-columns: 2fr 1fr;
-
-    gap:40px;
-
+  gap: 40px;
 }
-
-
-
 
 .cart-table {
-
-    border:1px solid #ddd;
-
+  border: 1px solid #ddd;
 }
-
-
-
 
 .cart-header {
+  display: grid;
 
-    display:grid;
+  grid-template-columns: 2fr 0.7fr 1fr 0.8fr;
 
-    grid-template-columns:2fr .7fr 1fr .8fr;
+  padding: 20px;
 
-    padding:20px;
+  background: #f7f5f1;
 
-    background:#f7f5f1;
+  color: #777;
 
-    color:#777;
+  font-size: 13px;
 
-    font-size:13px;
-
-    letter-spacing:2px;
-
+  letter-spacing: 2px;
 }
-
-
-
-
 
 .cart-row {
+  display: grid;
 
-    display:grid;
+  grid-template-columns: 2fr 0.7fr 1fr 0.8fr;
 
-    grid-template-columns:2fr .7fr 1fr .8fr;
+  align-items: center;
 
-    align-items:center;
+  padding: 20px;
 
-    padding:20px;
-
-    border-top:1px solid #ddd;
-
+  border-top: 1px solid #ddd;
 }
-
-
-
-
 
 .product-info {
+  display: flex;
 
-    display:flex;
+  gap: 20px;
 
-    gap:20px;
-
-    align-items:center;
-
+  align-items: center;
 }
-
-
 
 .product-info img {
+  width: 80px;
 
-    width:80px;
+  height: 80px;
 
-    height:80px;
+  object-fit: contain;
 
-    object-fit:contain;
-
-    background:#f5f4f1;
-
+  background: #f5f4f1;
 }
-
-
 
 .product-info small {
-
-    color:#777;
-
+  color: #777;
 }
-
-
 
 .product-info h3 {
+  font-size: 16px;
 
-    font-size:16px;
-
-    max-width:250px;
-
+  max-width: 250px;
 }
-
-
-
-
 
 .price {
-
-    font-weight:600;
-
+  font-weight: 600;
 }
-
-
-
 
 .quantity {
+  display: flex;
 
-    display:flex;
-
-    align-items:center;
-
+  align-items: center;
 }
-
-
 
 .quantity button {
+  width: 35px;
 
-    width:35px;
+  height: 35px;
 
-    height:35px;
+  border: 1px solid #ddd;
 
-    border:1px solid #ddd;
+  background: white;
 
-    background:white;
-
-    cursor:pointer;
-
+  cursor: pointer;
 }
-
-
 
 .quantity span {
+  width: 40px;
 
-    width:40px;
-
-    text-align:center;
-
+  text-align: center;
 }
-
-
-
-
 
 .total {
+  display: flex;
 
-    display:flex;
+  align-items: center;
 
-    align-items:center;
+  gap: 15px;
 
-    gap:15px;
-
-    font-weight:bold;
-
+  font-weight: bold;
 }
-
-
 
 .delete {
+  border: none;
 
-    border:none;
+  background: none;
 
-    background:none;
+  cursor: pointer;
 
-    cursor:pointer;
-
-    color:#777;
-
+  color: #777;
 }
-
-
-
-
-
 
 .summary {
+  border: 1px solid #ddd;
 
-    border:1px solid #ddd;
-
-    padding:30px;
-
+  padding: 30px;
 }
-
-
 
 .summary h2 {
+  border-bottom: 1px solid #ddd;
 
-    border-bottom:1px solid #ddd;
-
-    padding-bottom:20px;
-
+  padding-bottom: 20px;
 }
-
-
-
-
 
 .line,
 .total-line {
+  display: flex;
 
-    display:flex;
+  justify-content: space-between;
 
-    justify-content:space-between;
-
-    margin:25px 0;
-
+  margin: 25px 0;
 }
-
-
 
 .free {
-
-    color:green;
-
+  color: green;
 }
-
-
 
 .total-line {
+  font-size: 20px;
 
-    font-size:20px;
-
-    font-weight:bold;
-
+  font-weight: bold;
 }
-
-
 
 .promo {
+  display: flex;
 
-    display:flex;
-
-    gap:10px;
-
+  gap: 10px;
 }
-
-
 
 .promo input {
+  flex: 1;
 
-    flex:1;
+  padding: 12px;
 
-    padding:12px;
-
-    border:1px solid #ddd;
-
+  border: 1px solid #ddd;
 }
-
-
 
 .promo button {
+  padding: 0 25px;
 
-    padding:0 25px;
+  background: white;
 
-    background:white;
-
-    border:1px solid black;
-
+  border: 1px solid black;
 }
-
-
 
 .checkout {
+  width: 100%;
 
-    width:100%;
+  margin-top: 25px;
 
-    margin-top:25px;
+  height: 60px;
 
-    height:60px;
+  background: #000000;
 
-    background:#b99552;
+  color: white;
 
-    color:white;
+  border: none;
 
-    border:none;
-
-    font-weight:bold;
-
+  font-weight: bold;
 }
-
-
-
+.checkout:hover {
+  background: #b99552; 
+}
 .continue {
+  width: 100%;
 
-    width:100%;
+  margin-top: 30px;
 
-    margin-top:30px;
+  background: none;
 
-    background:none;
+  border: none;
 
-    border:none;
-
-    color:#777;
-
+  color: #777;
 }
 
-
-
-
-@media(max-width:900px){
-
-.cart-layout{
-
-    grid-template-columns:1fr;
-
-}
-
+@media (max-width: 900px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
 }

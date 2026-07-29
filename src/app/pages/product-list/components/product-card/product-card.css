@@ -203,7 +203,6 @@
     align-items: center;
     padding: 5px;
     background:white;
-
     border:1px solid #ddd;
 
 }
@@ -224,20 +223,21 @@
 
     flex:1;
 
-    background:white;
-
-    border:1px solid black;
-
+    background:black;
+    color:white;    
     display:flex;
 
     align-items:center;
 
     justify-content:center;
-
+    padding: 10px;
     gap:8px;
 
     cursor:pointer;
 
+}
+.cart-btn:hover{
+    background-color: #b8862f;
 }
 
 

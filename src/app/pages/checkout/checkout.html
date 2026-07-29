@@ -1,0 +1,413 @@
+@if(placed()){
+
+    <div class="success">
+
+
+        <h2>
+        Order Confirmed!
+        </h2>
+        <p>
+            Thank you {{shipping().username}}
+        </p>
+        <button (click)="home()">
+            Back Home
+        </button>
+    </div>
+}
+
+@else{
+    <div class="checkout-container">
+
+
+    <h1>
+    Checkout
+    </h1>
+    <div class="steps">
+        <div [class.active]="step()>=1">
+        ✓ Shipping
+        </div>
+
+        <div [class.active]="step()>=2">
+        {{step()>1?'✓':'2'}} Payment
+        </div>
+
+        <div [class.active]="step()==3">
+        3 Review
+        </div>
+    </div>
+
+    <div class="checkout-grid">
+        <div class="content">
+
+
+
+        @if(step()==1){
+
+
+        <div class="box">
+
+
+        <h2>
+        Shipping Address
+        </h2>
+
+
+
+        <label>
+        user Name
+        </label>
+
+        <input
+        [value]="shipping().username"
+        (input)="updateShipping('username',$any($event.target).value)"
+        >
+
+        <label>
+        Email
+        </label>
+
+        <input
+        [value]="shipping().email"
+        (input)="updateShipping('email',$any($event.target).value)"
+        >
+
+
+
+        <label>
+        Phone
+        </label>
+
+        <input
+        [value]="shipping().phone"
+        (input)="updateShipping('phone',$any($event.target).value)"
+        >
+
+
+
+        <label>
+        Street Address
+        </label>
+
+        <input
+        [value]="shipping().address"
+        (input)="updateShipping('address',$any($event.target).value)"
+        >
+
+
+
+        <div class="row">
+
+
+        <div>
+
+        <label>
+        City
+        </label>
+
+        <input
+        [value]="shipping().city"
+        (input)="updateShipping('city',$any($event.target).value)"
+        >
+
+        </div>
+
+
+
+        <div>
+
+        <label>
+        Country
+        </label>
+
+        <input
+        [value]="shipping().country"
+        (input)="updateShipping('country',$any($event.target).value)"
+        >
+
+
+        </div>
+
+
+        </div>
+
+
+
+        <button
+        (click)="nextStep()">
+
+        Continue to Payment
+
+        </button>
+
+
+        </div>
+
+
+        }
+
+
+
+
+        @if(step()==2){
+
+
+        <div class="box">
+
+
+        <h2>
+        Payment Details
+        </h2>
+
+
+
+        <label>
+        Name on Card
+        </label>
+
+        <input
+        (input)="updatePayment('cardName',$any($event.target).value)"
+        >
+
+
+
+        <label>
+        Card Number
+        </label>
+
+        <input
+        (input)="updatePayment('cardNumber',$any($event.target).value)"
+        >
+
+
+
+        <div class="row">
+
+
+        <input
+        placeholder="MM / YY"
+        (input)="updatePayment('expiry',$any($event.target).value)"
+        >
+
+
+        <input
+        placeholder="CVV"
+        (input)="updatePayment('cvv',$any($event.target).value)"
+        >
+
+
+        </div>
+
+
+        <div class="secure">
+
+        <lucide-icon [img]="Shield"></lucide-icon>
+
+        Your payment information is encrypted and secure.
+
+        </div>
+
+
+
+        <button
+        (click)="previousStep()">
+
+        Back
+
+        </button>
+
+
+        <button
+        (click)="nextStep()">
+
+        Review Order
+
+        </button>
+
+
+
+        </div>
+
+
+        }
+
+
+
+
+        @if(step()==3){
+
+
+
+        <div class="box">
+
+
+        <h2>
+        Review Your Order
+        </h2>
+
+
+
+        @for(item of carts(); track item.id){
+
+
+        <div class="item">
+
+
+        <img [src]="item.image">
+
+
+        <div>
+
+        {{item.title}}
+
+        <br>
+
+        Qty:
+        {{item.quantity}}
+
+        </div>
+
+
+        <strong>
+
+        ${{item.price * item.quantity}}
+
+        </strong>
+
+
+        </div>
+
+
+        }
+
+
+
+
+        <div class="shipping">
+
+
+        <h3>
+        Shipping to:
+        </h3>
+
+
+        <p>
+        {{shipping().username}}
+        </p>
+
+        <p>
+        {{shipping().address}}
+        </p>
+
+
+        <p>
+        {{shipping().city}},
+        {{shipping().country}}
+        </p>
+
+
+        </div>
+
+
+
+
+        <button
+        (click)="previousStep()">
+
+        Back
+
+        </button>
+
+
+
+        <button
+        (click)="placeOrder()">
+
+        Place Order -
+        ${{total()}}
+
+        </button>
+        @if(errorMessage()){
+
+            <p class="error" style="color:red;">
+                {{errorMessage()}}
+            </p>
+
+        }
+
+
+
+        </div>
+
+
+
+        }
+
+
+
+        </div>
+        <div class="summary">
+
+
+        <h3>
+        Order Summary
+        </h3>
+
+
+        @for(item of carts(); track item.id){
+        <div>
+            {{item.title}}
+            <span>
+            ${{item.price}}
+            </span>
+        </div>
+
+
+        }
+
+
+
+        <hr>
+
+        <p>
+        Subtotal
+
+        <b>
+        ${{subtotal()}}
+        </b>
+
+        </p>
+
+
+        <p>
+        Shipping
+
+        <b>
+
+        {{shippingCost()==0?'Free':'$'+shippingCost()}}
+
+        </b>
+
+        </p>
+
+
+        <h3>
+
+        Total
+
+        <span>
+        ${{total()}}
+        </span>
+
+        </h3>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+    </div>
+}

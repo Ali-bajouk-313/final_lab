@@ -76,8 +76,8 @@ export class About {
 
   sendMessage(event: Event){
     event.preventDefault();
-
     console.log("Message sent");
+    alert('Message sent')
   }
 
 }

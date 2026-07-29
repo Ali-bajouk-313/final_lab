@@ -71,7 +71,7 @@ export class FavoriteServices{
               localStorage.setItem(
                   'favorite',
                   JSON.stringify(this.favorite())
-              );
+            );
         }
       }
     }

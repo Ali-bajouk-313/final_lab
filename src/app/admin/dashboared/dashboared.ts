@@ -1,18 +1,109 @@
-import { Component,signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
-import { Router } from '@angular/router';
+import { ProductService } from '../../shared/services/products-services/products.service';
 @Component({
-  selector: 'app-dashboared',
-  imports: [],
-  templateUrl: './dashboared.html',
-  styleUrl: './dashboared.css',
+  selector: 'app-dashboard',
+  standalone:true,
+  templateUrl:'./dashboared.html',
+  styleUrl:'./dashboared.css'
 })
 export class Dashboared {
-  users: ReturnType<AuthService['getUsers']>;  
-  constructor(
-    private auth:AuthService,
-  ){
-    this.users=this.auth.getUsers();
-    console.log(this.users())
-  }  
+
+
+  private auth = inject(AuthService);
+  private productService = inject(ProductService);
+
+
+  users = this.auth.getUsers();
+
+  products = this.productService.products;
+
+
+  totalUsers = signal(0);
+  totalProducts = signal(0);
+  totalOrders = signal(0);
+  totalRevenue = signal(0);
+  usersWithCart = signal(0);
+  pendingOrders = signal(0);
+
+
+
+  constructor(){
+
+    this.calculateStats();
+
+  }
+
+
+
+  calculateStats(){
+
+
+    const users = this.users();
+
+
+    this.totalUsers.set(
+      users.filter(user=>user.role==='user').length
+    );
+
+
+    this.totalProducts.set(
+      this.products().length
+    );
+
+
+
+    let orders = 0;
+    let revenue = 0;
+    let pending = 0;
+
+
+    users.forEach(user=>{
+
+
+      if(user.orders){
+
+
+        orders += user.orders.length;
+
+
+        user.orders.forEach(order=>{
+
+
+          revenue += order.total;
+
+
+          if(order.status === 'pending'){
+            pending++;
+          }
+
+
+        });
+
+
+      }
+
+
+    });
+
+
+
+    this.totalOrders.set(orders);
+
+    this.totalRevenue.set(revenue);
+
+    this.pendingOrders.set(pending);
+
+
+
+    this.usersWithCart.set(
+      users.filter(
+        user=>user.cart && user.cart.length > 0
+      ).length
+    );
+
+
+  }
+
+
 }

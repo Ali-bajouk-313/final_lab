@@ -1,0 +1,140 @@
+.dashboard {
+    padding: 30px;
+    background: #f8f8f8;
+    min-height: 100%;
+}
+
+
+.dashboard h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #111;
+}
+
+
+/* Statistics cards */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height: 140px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+
+    transition: 
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.12);
+
+}
+
+
+
+.card h3 {
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    color: #777;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+.card p {
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    color: #111;
+
+    margin: 0;
+
+}
+
+
+
+/* Different card accents */
+
+.card:nth-child(1) {
+    border-left: 5px solid #111;
+}
+
+
+.card:nth-child(2) {
+    border-left: 5px solid #2563eb;
+}
+
+
+.card:nth-child(3) {
+    border-left: 5px solid #16a34a;
+}
+
+
+.card:nth-child(4) {
+    border-left: 5px solid #f59e0b;
+}
+
+
+.card:nth-child(5) {
+    border-left: 5px solid #9333ea;
+}
+
+
+.card:nth-child(6) {
+    border-left: 5px solid #dc2626;
+}
+
+
+
+/* Responsive */
+
+@media(max-width:1000px){
+
+    .cards{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .dashboard{
+        padding:20px;
+    }
+
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+
+}

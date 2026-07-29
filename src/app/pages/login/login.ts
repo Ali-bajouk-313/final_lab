@@ -12,7 +12,7 @@ import { FormBuilder,FormGroup, Validator, ReactiveFormsModule, Validators } fro
   styleUrl: './login.css',
 })
 export class Login {
-
+  errormessage='';
   loginform!:FormGroup;
 
    constructor(
@@ -111,21 +111,22 @@ export class Login {
         console.log("Current user:", user);
 
       },
+      
       error:(err)=>{
       console.log("REGISTER ERROR", err);
       console.log("STATUS:", err.status);
       console.log("ERROR BODY:", err.error);
       console.log("DETAILS:", err.error?.errors);
         if (err.status === 404) {
-        alert('Account not found.');
+        this.errormessage='Account not found';
         return;
       }
 
       if (err.status === 401) {
-        alert('Invalid email or password.');
+        this.errormessage='Invalid email or password';
         return;
       }
-      alert(err.error?.message ?? 'Login failed.');
+      this.errormessage=err.error?.message ??'login failed. Please try again.'
       }
     })
     

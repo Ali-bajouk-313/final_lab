@@ -118,9 +118,6 @@ search(event:Event){
     this.showForm.set(true);
   }
 
-
-
-
   deleteProduct(product:IProduct){
 
       this.products.update(products=>
@@ -173,9 +170,6 @@ search(event:Event){
     }
     this.showForm.set(false);
   }
-
-
-
 
   columnDefs:ColDef[]=[
     {
