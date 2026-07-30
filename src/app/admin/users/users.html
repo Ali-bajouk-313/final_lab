@@ -2,22 +2,13 @@
     Total users: {{users().length}}
 </p>
 
-
 <div class="users-actions">
 
 <input
-
 class="search-input"
-
 placeholder="Search users..."
 
-
 />
-
-
-
-
-
 
 @if(showform()){
 
@@ -242,13 +233,8 @@ Cancel
 
 
 <ag-grid-angular
-
 class="ag-theme-alpine"
-
 [rowData]="users()"
-
 [columnDefs]="columnDefs"
-
 domLayout="autoHeight">
-
 </ag-grid-angular>

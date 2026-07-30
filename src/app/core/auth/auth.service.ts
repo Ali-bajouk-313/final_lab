@@ -129,7 +129,6 @@ export class AuthService{
   getUsers(){
     return this.users.asReadonly();
   }
-
   addUser(user:IUser){
     this.users.update(users=>[...users,user]);
     this.save();
@@ -140,13 +139,6 @@ export class AuthService{
       );
     }
   }
-  removeUser(id:number){
-    this.users.update(users=>
-      users.filter(user=>user.id !==id)
-    );
-    this.save();
-  }
-
   private save(){
     if(isPlatformBrowser(this.platformId)){
       localStorage.setItem(
@@ -169,7 +161,6 @@ export class AuthService{
     }
     this.save()
   }
-
   addAddress(address:IAddress){
     const user = this.currentuser();
     if(!user) return;
@@ -190,8 +181,73 @@ export class AuthService{
   getAddresses(){
     return this.currentuser()?.addresses ?? [];
   }
-
- getallUSers():IUser[]{
+  getallUSers():IUser[]{
     return JSON.parse(localStorage.getItem('users') || '[]');
-  } 
+  }
+  updateOrder(updatedOrder:any){
+
+    const users = this.getallUSers();
+
+
+    for(const user of users){
+
+
+      const orderIndex = user.orders?.findIndex(
+        (order:any)=> order.id === updatedOrder.id
+      );
+
+
+      if(orderIndex !== -1 && orderIndex !== undefined){
+
+
+        user.orders[orderIndex] = {
+          ...user.orders[orderIndex],
+          ...updatedOrder
+        };
+
+
+        break;
+
+      }
+
+
+    }
+
+
+
+    localStorage.setItem(
+      'users',
+      JSON.stringify(users)
+    );
+
+
+  }
+    removeUser(id:number){
+    this.users.update(users=>
+      users.filter(user=>user.id !==id)
+    );
+    this.save();
+  }
+  deleteOrder(orderId:number){
+
+    const users = this.getallUSers();
+    users.forEach((user:any)=>{
+    if(user.orders){
+
+
+      user.orders =
+      user.orders.filter(
+        (order:any)=>order.id !== orderId
+      );
+
+
+      }
+
+    });
+
+      localStorage.setItem(
+        'users',
+        JSON.stringify(users)
+      );
+    }
 }

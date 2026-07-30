@@ -1,105 +1,68 @@
 <div class="dashboard">
 
+    <h1>Overview</h1>
 
-<h1>
-    Overview
-</h1>
+    <div class="cards">
 
+        <div class="card">
+            <div class="card-header">
+                <span>Total Revenue</span>
+                <i class="fa-solid fa-dollar-sign"></i>
+            </div>
 
+            <h2>${{ totalRevenue() }}</h2>
 
-<div class="cards">
-
-
-<div class="card">
-
-<h3>
-Users
-</h3>
-
-<p>
-{{totalUsers()}}
-</p>
-
-</div>
+            <small>Store Revenue</small>
+        </div>
 
 
+        <div class="card">
+            <div class="card-header">
+                <span>Total Orders</span>
+                <i class="fa-solid fa-box"></i>
+            </div>
+
+            <h2>{{ totalOrders() }}</h2>
+
+            <small>Orders Received</small>
+        </div>
 
 
-<div class="card">
+        <div class="card">
+            <div class="card-header">
+                <span>Products</span>
+                <i class="fa-solid fa-cube"></i>
+            </div>
 
-<h3>
-Products
-</h3>
+            <h2>{{ totalProducts() }}</h2>
 
-<p>
-{{totalProducts()}}
-</p>
-
-</div>
-
+            <small>Products Available</small>
+        </div>
 
 
+        <div class="card">
+            <div class="card-header">
+                <span>Users</span>
+                <i class="fa-solid fa-users"></i>
+            </div>
 
-<div class="card">
+            <h2>{{ totalUsers() }}</h2>
 
-<h3>
-Orders
-</h3>
-
-<p>
-{{totalOrders()}}
-</p>
-
-</div>
+            <small>Registered Users</small>
+        </div>
 
 
+        <div class="card">
+            <div class="card-header">
+                <span>Pending Orders</span>
+                <i class="fa-solid fa-clock"></i>
+            </div>
 
+            <h2>{{ pendingOrders() }}</h2>
 
-<div class="card">
+            <small>Waiting for Processing</small>
+        </div>
 
-<h3>
-Revenue
-</h3>
-
-<p>
-${{totalRevenue()}}
-</p>
-
-</div>
-
-
-
-
-<div class="card">
-
-<h3>
-Users With Cart
-</h3>
-
-<p>
-{{usersWithCart()}}
-</p>
-
-</div>
-
-
-
-
-<div class="card">
-
-<h3>
-Pending Orders
-</h3>
-
-<p>
-{{pendingOrders()}}
-</p>
-
-</div>
-
-
-</div>
-
-
+    </div>
 
 </div>

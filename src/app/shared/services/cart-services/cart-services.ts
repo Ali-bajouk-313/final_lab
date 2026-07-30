@@ -1,4 +1,4 @@
-import { Injectable, inject, signal,PLATFORM_ID } from '@angular/core';
+import { Injectable, inject, signal,PLATFORM_ID,computed } from '@angular/core';
 import { ICart } from '../../interface/product.interface';
 import { IProduct } from '../../interface/product.interface';
 import { isPlatformBrowser } from '@angular/common';
@@ -8,6 +8,7 @@ import { AuthService } from '../../../core/auth/auth.service';
 })
 export class CartService{
   cart=signal<ICart[]>([]);
+  hasitems=computed(()=>this.cart().length)
   private platformId = inject(PLATFORM_ID);
   constructor(
     private auth:AuthService

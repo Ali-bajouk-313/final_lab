@@ -74,9 +74,9 @@ export class Home {
     }
   ];
 
-  navigate(url: string) {
-    this.router.navigate([url]);
-  }
+    navigate(url: string) {
+      this.router.navigate([url]);
+    }
   ngOnInit(){
 
     this.productService.getProducts()

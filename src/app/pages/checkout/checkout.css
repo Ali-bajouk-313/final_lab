@@ -100,7 +100,7 @@ button{
 margin-top:20px;
 padding:12px 25px;
 display: flex;
-background:#B8975A;
+background:#b8862f;
 
 color:white;
 gap:5px;
@@ -198,4 +198,242 @@ grid-template-columns:1fr;
 
 }
 
+@media(max-width:500px){
+    .cart{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    width:100%;
+
+}
+
+
+
+.item img{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+}
+
+
+
+.item div{
+
+    width:100%;
+
+    font-size:14px;
+
+}
+
+
+
+.item strong{
+
+    align-self:flex-end;
+
+    font-size:16px;
+
+}
+
+.cart-table{
+    display: flex;
+    flex-direction: column;
+}
+.checkout-container{
+
+    padding:25px 12px;
+
+}
+
+
+
+h1{
+
+    font-size:24px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+/* STEPS */
+
+.steps{
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+
+}
+
+
+
+
+
+/* BOXES */
+
+.box,
+.summary{
+
+    padding:15px;
+
+}
+
+
+
+
+
+.box h2{
+
+    font-size:20px;
+
+}
+
+
+
+.summary h3{
+
+    font-size:18px;
+
+}
+
+
+
+
+/* INPUTS */
+
+input{
+
+    padding:10px;
+
+    font-size:14px;
+
+}
+
+
+
+label{
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+}
+
+
+
+
+
+/* BUTTONS */
+
+button{
+
+    width:100%;
+
+    justify-content:center;
+
+    padding:11px;
+
+    font-size:14px;
+
+}
+
+
+
+
+
+/* PRODUCT ITEMS */
+
+.item{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+
+
+.item img{
+
+    width:80px;
+
+    height:80px;
+
+}
+
+
+
+.item strong{
+
+    align-self:flex-end;
+
+}
+
+
+
+
+
+/* SUMMARY */
+
+.summary div{
+
+    font-size:14px;
+
+}
+
+
+
+.summary p{
+
+    font-size:14px;
+
+}
+
+
+
+
+
+/* SUCCESS PAGE */
+
+.success{
+
+    padding:20px;
+
+    text-align:center;
+
+}
+
+
+
+.success h2{
+
+    font-size:24px;
+
+}
+
+
+
+.success p{
+
+    font-size:14px;
+
+}
+
+
+
+}
 }

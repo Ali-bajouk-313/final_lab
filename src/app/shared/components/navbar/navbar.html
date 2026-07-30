@@ -71,15 +71,18 @@
 
         @if(isLoggedIn) {
 
-            <a routerLink="/favorite">
+            <a routerLink="/favorite" class="icon-wrapper">
                 <lucide-icon [img]="Heart"></lucide-icon>
+                @if(hasfavoriteitems()){
+                    <span class="badge"></span>
+                }
             </a>
-
-
-            <a routerLink="/cart">
+            <a routerLink="/cart" class="icon-wrapper">
                 <lucide-icon [img]="ShoppingCart"></lucide-icon>
+                @if(hascartitems()){
+                    <span class="badge"></span>
+                }
             </a>
-
 
             <a routerLink="/profile">
                 <lucide-icon [img]="User"></lucide-icon>

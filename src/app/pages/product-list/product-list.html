@@ -52,6 +52,8 @@
         <input
         placeholder="Search products..."
         [(ngModel)]="search"
+        (input)="applyFilters()"
+
         />
 
     </div>
@@ -68,7 +70,7 @@
 
             <button
             [class.active]="selectedCategory === category.name"
-            (click)="selectedCategory = category.name">
+            (click)="selectedCategory = category.name; applyFilters()">
 
 
             <span>
@@ -93,6 +95,8 @@
                 min="0"
                 max="1000"
                 [(ngModel)]="maxPrice"
+                (input)="applyFilters()"
+
             />
 
             <div class="price-input">
@@ -106,7 +110,8 @@
 
                 <input
                 type="number"
-                [(ngModel)]="minPrice">
+                [(ngModel)]="minPrice"
+                (input)="applyFilters()">
 
                 </div>
 
@@ -119,7 +124,8 @@
 
             <input
             type="number"
-            [(ngModel)]="maxPrice">
+            [(ngModel)]="maxPrice"
+            (input)="applyFilters()">
 
             </div>
 
@@ -146,8 +152,9 @@
 
             @for(rate of ratings; track rate.value){
 
-                <button>
-
+                <button
+                [class.active]="selectedRating === rate.value"
+                (click)="selectedRating = rate.value; applyFilters()">
 
                 <span class="stars">
 
@@ -163,7 +170,7 @@
 
             }
 
-            <a>
+            <a (click)="resetFilters()">
             Reset all filters
             </a>
 
@@ -171,7 +178,9 @@
 
         <section class="products">
 
-            <app-product-card></app-product-card>
+            <app-product-card
+            [productList]="filteredProducts">
+            </app-product-card>
 
         </section>
 

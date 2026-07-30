@@ -161,8 +161,7 @@ export class Users {
     });
     this.showform.set(true);
   }
-  
-    deleteuser(user:IUser){
+  deleteuser(user:IUser){
       this.auth.removeUser(user.id);
       this.users.update(users =>
         users.filter(u => u.id !== user.id)
