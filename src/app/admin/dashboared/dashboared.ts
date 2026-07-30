@@ -47,12 +47,10 @@ export class Dashboared {
     );
 
 
-    this.totalProducts.set(
-      this.products().length
-    );
-
-
-
+    this.productService.getProducts().subscribe(products => {
+    this.totalProducts.set(products.length);
+    console.log(this.totalProducts());
+    });
     let orders = 0;
     let revenue = 0;
     let pending = 0;
@@ -93,16 +91,6 @@ export class Dashboared {
     this.totalRevenue.set(revenue);
 
     this.pendingOrders.set(pending);
-
-
-
-    this.usersWithCart.set(
-      users.filter(
-        user=>user.cart && user.cart.length > 0
-      ).length
-    );
-
-
   }
 
 

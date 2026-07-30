@@ -306,3 +306,315 @@ color:#555;
 flex:1;
 
 }
+
+/* =========================
+   TABLET RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+.page{
+
+    padding:20px;
+
+}
+
+
+
+.header{
+
+    gap:20px;
+
+}
+
+
+
+.content{
+
+    gap:20px;
+
+}
+
+
+
+.sidebar{
+
+    width:160px;
+
+}
+
+
+
+.actions select{
+
+    max-width:180px;
+
+}
+
+
+
+}
+
+
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+
+.page{
+
+    padding:15px;
+
+}
+
+
+
+/* HEADER */
+
+.header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+
+.header h1{
+
+    font-size:24px;
+
+}
+
+
+
+.actions{
+
+    width:100%;
+
+    justify-content:space-between;
+
+}
+
+
+
+.actions select{
+
+    flex:1;
+
+    height:38px;
+
+}
+
+
+
+.actions button{
+
+    width:38px;
+
+    height:38px;
+
+}
+
+
+
+/* SEARCH */
+
+.search{
+
+    height:42px;
+
+}
+
+
+
+/* CONTENT */
+
+.content{
+
+    flex-direction:column;
+
+}
+
+
+
+/* SIDEBAR */
+
+.sidebar{
+
+    width:100%;
+
+    border-bottom:1px solid #ddd;
+
+    padding-bottom:20px;
+
+}
+
+
+
+.sidebar h5{
+
+    margin-top:15px;
+
+}
+
+
+
+.sidebar button{
+
+    padding:10px;
+
+}
+
+
+
+/* PRICE INPUT */
+
+.price-input{
+
+    gap:15px;
+
+}
+
+
+
+.price-input div{
+
+    flex:1;
+
+}
+
+
+
+.price-input input{
+
+    height:35px;
+
+}
+
+
+
+
+/* PRODUCTS */
+
+.products{
+
+    width:100%;
+
+}
+
+
+
+}
+
+
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+
+@media(max-width:480px){
+
+
+.page{
+
+    padding:10px;
+
+}
+
+
+
+.header h1{
+
+    font-size:21px;
+
+}
+
+
+
+.header p{
+
+    margin-top:5px;
+
+}
+
+
+
+.actions{
+
+    flex-direction:column;
+
+}
+
+
+
+.actions select{
+
+    width:100%;
+
+}
+
+
+
+.actions button{
+
+    width:100%;
+
+}
+
+
+
+/* SEARCH */
+
+.search input{
+
+    font-size:14px;
+
+}
+
+
+
+
+.sidebar h5{
+
+    font-size:10px;
+
+}
+
+
+
+
+.price-input{
+
+    flex-direction:column;
+
+}
+
+
+
+.price-input div{
+
+    width:100%;
+
+}
+
+
+
+.price-value{
+
+    font-size:12px;
+
+}
+
+
+
+
+}

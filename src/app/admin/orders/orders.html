@@ -1,164 +1,119 @@
-<h1>
-    Orders
-</h1>
+<p class="total-orders">
+    Total Orders: {{orders().length}}
+</p>
 
 
-@for(user of usersWithOrders; track user.id){
 
-<div class="user-orders">
+@if(showform()){
 
-    <h2>
-        {{user.username}}
-    </h2>
 
-    <p>
-        {{user.email}}
-    </p>
+<div class="order-form">
 
 
-    <hr>
+<h2>
+Edit Order
+</h2>
 
 
-    @for(order of user.orders; track order.id){
 
-    <div class="order-card">
+<label>
+Status
+</label>
 
 
-        <h3>
-            Order #{{order.id}}
-        </h3>
+<select [(ngModel)]="selectedOrder().status">
 
+<option>
+Pending
+</option>
 
-        <p>
-            Date:
-            {{order.date }}
-        </p>
+<option>
+Processing
+</option>
 
+<option>
+Shipped
+</option>
 
-        <p>
-            Status:
-            {{order.status}}
-        </p>
+<option>
+Delivered
+</option>
 
+</select>
 
-        <p>
-            Total:
-            ${{order.total}}
-        </p>
 
 
 
-        <h4>
-            Products
-        </h4>
+<h3>
+Shipping Address
+</h3>
 
 
 
-        @for(item of order.items; track item.productId){
+<input
+placeholder="Address"
+[(ngModel)]="selectedOrder().shipping.address"
+>
 
-        <div class="product">
 
 
-            <img
-            [src]="item.image"
-            width="50"
-            height="50">
+<input
+placeholder="City"
+[(ngModel)]="selectedOrder().shipping.city"
+>
 
 
-            <span>
-                {{item.title}}
-            </span>
 
+<input
+placeholder="Country"
+[(ngModel)]="selectedOrder().shipping.country"
+>
 
-            <span>
-                Quantity:
-                {{item.quantity}}
-            </span>
 
 
-            <span>
-                Price:
-                ${{item.price}}
-            </span>
+<input
+placeholder="Phone"
+[(ngModel)]="selectedOrder().shipping.phone"
+>
 
 
-        </div>
 
-        }
+<div class="buttons">
 
 
-        <hr>
+<button
+class="save-btn"
+(click)="saveOrder()">
+Save
+</button>
 
 
-        @if(order.shipping){
+<button
+class="cancel-btn"
+(click)="closeForm()">
+Cancel
+</button>
 
-        <h4>
-            Shipping Address
-        </h4>
 
+</div>
 
-        <div class="address">
-
-
-            <p>
-                Name:
-                {{order.shipping.username}}
-            </p>
-
-
-            <p>
-                Email:
-                {{order.shipping.email}}
-            </p>
-
-
-            <p>
-                Street:
-                {{order.shipping.address}}
-            </p>
-
-
-            <p>
-                City:
-                {{order.shipping.city}}
-            </p>
-
-
-            <p>
-                State:
-                {{order.shipping.state}}
-            </p>
-
-
-            <p>
-                ZIP:
-                {{order.shipping.zip}}
-            </p>
-
-
-            <p>
-                Country:
-                {{order.shipping.country}}
-            </p>
-
-
-            <p>
-                Phone:
-                {{order.shipping.phone}}
-            </p>
-
-
-        </div>
-
-        }
-
-
-    </div>
-
-
-    }
 
 </div>
 
 
 }
+
+
+
+
+<ag-grid-angular
+
+class="ag-theme-alpine"
+
+[rowData]="orders()"
+
+[columnDefs]="columnDefs"
+
+domLayout="autoHeight">
+
+</ag-grid-angular>

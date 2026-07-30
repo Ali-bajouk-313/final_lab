@@ -127,3 +127,5 @@ export const routes: Routes = [
 // add hover for buttons in shop
 //  make css for details page
 // make the filters
+// message error in register didn't work
+// user and product are 0 in overview

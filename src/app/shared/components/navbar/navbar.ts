@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component ,inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import { LucideAngularModule, Search, Heart, ShoppingCart, User } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,8 @@ import {Button} from '../buttons/buttons';
 import {Input} from '../input/input';
 import { AuthService } from '../../../core/auth/auth.service';
 import {Router} from '@angular/router'
+import { CartService } from '../../services/cart-services/cart-services';
+import { FavoriteServices } from '../../services/favorite-services/favorite-services';
 @Component({
   changeDetection:ChangeDetectionStrategy.OnPush, 
   selector: 'app-navbar',
@@ -27,16 +29,17 @@ export class Navbar {
     "Women's Clothing",
     "Kids"
   ];
-
-  constructor(
-    private auth:AuthService,
-    private router:Router
-  ){}
+  private Cart=inject(CartService);
+  private Favorite=inject(FavoriteServices);
+  private auth=inject(AuthService);
+  private router=inject(Router)
+  constructor(){}
 
   get isLoggedIn(): boolean {
     return this.auth.isAuthenticated();
   }
-
+  hascartitems=this.Cart.hasitems;
+  hasfavoriteitems=this.Favorite.hasitems;
   logout(){
     this.auth.logout();
     this.router.navigate(['/login']);

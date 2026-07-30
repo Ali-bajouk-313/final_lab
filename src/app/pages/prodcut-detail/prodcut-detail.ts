@@ -59,7 +59,6 @@ export class ProdcutDetail implements OnInit {
 
     }
     this.Favorite.toggleFavorite(product);
-    alert("Product added to favorite");
   }
   
   isFavorite(id:number){
@@ -79,7 +78,6 @@ export class ProdcutDetail implements OnInit {
     }
     this.Cart.addToCart(product);
     console.log('product added');
-    alert('product added')
   }
 
 }

@@ -1,4 +1,4 @@
-import { Injectable, inject, signal,PLATFORM_ID } from '@angular/core';
+import { Injectable, inject, signal,PLATFORM_ID,computed } from '@angular/core';
 import { ICart } from '../../interface/product.interface';
 import { IProduct } from '../../interface/product.interface';
 import { isPlatformBrowser } from '@angular/common';
@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/auth/auth.service';
 export class FavoriteServices{
     favorite=signal<IProduct[]>([]);
     private platformId = inject(PLATFORM_ID);
+    hasitems=computed(()=>this.favorite().length)
 
     constructor(
       private auth:AuthService,

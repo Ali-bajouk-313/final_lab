@@ -64,6 +64,10 @@
 
 }
 
+button:hover{
+    background:#b8862f;
+
+}
 .favorites-container h1 {
     text-align:left;
 }
@@ -263,8 +267,7 @@
 
 .favorites-container > button:hover {
 
-    opacity:.8;
-
+    background:#b8862f;
 }
 
 .actions {

@@ -9,7 +9,7 @@
   font-family: "Playfair Display", Georgia, serif;
   font-size: 36px;
   font-weight: 700;
-  color:#B8975A;
+  color:#b8862f;
 
 }
 .Welcome h2{
@@ -117,7 +117,7 @@
 .form-group ::ng-deep input:focus {
 
 
-    border-color:#B8975A;
+    border-color:#b8862f;
 
 }
 
@@ -146,7 +146,7 @@
 
 ::ng-deep .auth-button:hover {
 
-    background:#B8975A;
+    background:#b8862f;
 
 }
 
@@ -174,7 +174,7 @@
 
     border:1px solid #D9D9D9;
 
-    background:#B8975A;
+    background:#b8862f;
     color:#F8F7F5;
 
     cursor:pointer;
